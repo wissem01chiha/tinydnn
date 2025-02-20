@@ -1,0 +1,8 @@
+# @package _group_
+
+mode: point_to_plane_gauss_newton
+
+gauss_newton_config:
+  scheme: geman_mcclure
+  sigma: 0.3
+  max_iters: 1
