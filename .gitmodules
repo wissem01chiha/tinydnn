@@ -1,0 +1,29 @@
+[submodule "third_party/eigen"]
+    ignore = dirty
+    path = third_party/eigen
+    url = https://gitlab.com/libeigen/eigen.git
+[submodule "third_party/googletest"]
+    ignore = dirty
+    path = third_party/googletest
+    url = https://github.com/google/googletest.git
+[submodule "third_party/benchmark"]
+    ignore = dirty
+    path = third_party/benchmark
+    url = https://github.com/google/benchmark.git
+[submodule "third_party/fmt"]
+    ignore = dirty
+    path = third_party/fmt
+    url = https://github.com/fmtlib/fmt.git
+[submodule "third_party/nlohmann"]
+	path = third_party/nlohmann
+	url = https://github.com/nlohmann/json.git
+[submodule "third_party/Fastor"]
+	path = third_party/Fastor
+	url = https://github.com/romeric/Fastor
+[submodule "third_party/spdlog"]
+	path = third_party/spdlog
+	url = https://github.com/romeric/spdlog
+[submodule "third_party/nanoflann"]
+	path = third_party/nanoflann
+	url = https://github.com/romeric/nanoflann
+

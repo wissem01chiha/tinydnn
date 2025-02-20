@@ -1,29 +1,10 @@
-cmake_minimum_required(VERSION 3.14...3.22)
+# -- Main Script to run the Odometry --
+add_executable(run_odometry cmd_run_odometry.cpp odometry_runner.h odometry_runner.cpp)
+target_link_libraries(run_odometry PUBLIC CT_ICP SlamCore)
 
-project(GreeterStandalone LANGUAGES CXX)
+if (WITH_VIZ3D)
+    LINK_WITH_VIZ3D(TARGET run_odometry)
+    target_link_libraries(run_odometry PUBLIC CT_ICP-viz3d)
+endif ()
 
-# --- Import tools ----
-
-include(../cmake/tools.cmake)
-
-# ---- Dependencies ----
-
-include(../cmake/CPM.cmake)
-
-CPMAddPackage(
-  GITHUB_REPOSITORY jarro2783/cxxopts
-  VERSION 3.0.0
-  OPTIONS "CXXOPTS_BUILD_EXAMPLES NO" "CXXOPTS_BUILD_TESTS NO" "CXXOPTS_ENABLE_INSTALL YES"
-)
-
-CPMAddPackage(NAME Greeter SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
-
-# ---- Create standalone executable ----
-
-file(GLOB sources CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp)
-
-add_executable(${PROJECT_NAME} ${sources})
-
-set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17 OUTPUT_NAME "Greeter")
-
-target_link_libraries(${PROJECT_NAME} Greeter::Greeter cxxopts)
+install(TARGETS run_odometry DESTINATION ${CT_ICP_INSTALL_DIR}/bin)
