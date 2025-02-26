@@ -1,2 +1,0 @@
-add_executable(regression_run regression_run.cxx)
-target_link_libraries(regression_run PUBLIC CT_ICP)

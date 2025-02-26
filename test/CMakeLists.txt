@@ -1,60 +1,48 @@
-cmake_minimum_required(VERSION 3.14...3.22)
-
-project(GreeterTests LANGUAGES CXX)
-
-# ---- Options ----
-
-option(ENABLE_TEST_COVERAGE "Enable test coverage" OFF)
-option(TEST_INSTALLED_VERSION "Test the version found by find_package" OFF)
-
-# --- Import tools ----
-
-include(../cmake/tools.cmake)
-
-# ---- Dependencies ----
-
-include(../cmake/CPM.cmake)
-
-CPMAddPackage("gh:doctest/doctest@2.4.9")
-CPMAddPackage("gh:TheLartians/Format.cmake@1.7.3")
-
-if(TEST_INSTALLED_VERSION)
-  find_package(Greeter REQUIRED)
-else()
-  CPMAddPackage(NAME Greeter SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
-endif()
-
-# ---- Create binary ----
-
-file(GLOB sources CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp)
-add_executable(${PROJECT_NAME} ${sources})
-target_link_libraries(${PROJECT_NAME} doctest::doctest Greeter::Greeter)
-set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17)
-
-# enable compiler warnings
-if(NOT TEST_INSTALLED_VERSION)
-  if(CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-    target_compile_options(Greeter PUBLIC -Wall -Wpedantic -Wextra -Werror)
-  elseif(MSVC)
-    target_compile_options(Greeter PUBLIC /W4 /WX)
-    target_compile_definitions(${PROJECT_NAME} PUBLIC DOCTEST_CONFIG_USE_STD_HEADERS)
-  endif()
-endif()
-
-# ---- Add GreeterTests ----
-
+include(CTest)
 enable_testing()
 
-# Note: doctest and similar testing frameworks can automatically configure CMake tests. For other
-# testing frameworks add the tests target instead: add_test(NAME ${PROJECT_NAME} COMMAND
-# ${PROJECT_NAME})
+add_executable(print_device print_device.cpp)
+target_link_libraries(print_device
+    ${project_library_target_name} ${REQUIRED_LIBRARIES})
 
-include(${doctest_SOURCE_DIR}/scripts/cmake/doctest.cmake)
-doctest_discover_tests(${PROJECT_NAME})
+add_executable(tiny_dnn_test test.cpp test_main.cpp)
 
-# ---- code coverage ----
+set_target_properties(tiny_dnn_test PROPERTIES LINKER_LANGUAGE CXX)
 
-if(ENABLE_TEST_COVERAGE)
-  target_compile_options(Greeter PUBLIC -O0 -g -fprofile-arcs -ftest-coverage)
-  target_link_options(Greeter PUBLIC -fprofile-arcs -ftest-coverage)
+target_link_libraries(tiny_dnn_test
+    ${project_library_target_name} ${REQUIRED_LIBRARIES})
+
+
+add_test(all_tests tiny_dnn_test)
+# workaround for https://gitlab.kitware.com/cmake/cmake/issues/8774
+add_custom_target(run_tests COMMAND ${CMAKE_CTEST_COMMAND}
+    DEPENDS tiny_dnn_test)
+
+if(COVERALLS)
+    message(STATUS "Code coverage: Enabled")
+    set_target_properties(tiny_dnn_test
+        PROPERTIES COMPILE_FLAGS "${CMAKE_CXX_FLAGS} -g -fprofile-arcs -ftest-coverage"
+        LINK_FLAGS "-lgcov --coverage")
+
+else(COVERALLS)
+    message(STATUS "Code coverage: Disabled")
+endif(COVERALLS)
+
+if(PROTO_CPP_AVAILABLE)
+    set_source_files_properties(${proto_file} PROPERTIES GENERATED TRUE)
+    target_sources(tiny_dnn_test PUBLIC ${proto_file})
+    set_source_files_properties(test.cpp PROPERTIES COMPILE_DEFINITIONS
+                                CNN_USE_CAFFE_CONVERTER)
+    target_link_libraries(tiny_dnn_test
+            ${project_library_target_name}
+            ${PROTOBUF_LIBRARIES} ${REQUIRED_LIBRARIES})   
 endif()
+
+if(PROTO_CPP_GENERATE)
+    add_dependencies(tiny_dnn_test generated_proto)
+endif()
+
+### Clang-tidy check
+include(../cmake/clang-cxx-dev-tools.cmake)
+
+cotire(print_device tiny_dnn_test)

@@ -1,2 +1,0 @@
-add_subdirectory(SlamCore)
-add_subdirectory(ct_icp)

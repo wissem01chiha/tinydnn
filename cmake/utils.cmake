@@ -1,4 +1,0 @@
-macro(SLAM_PARENT_AND_LOCAL_VAR)
-    set(${ARGV0} "${ARGV1}")
-    set(${ARGV0} "${ARGV1}" PARENT_SCOPE)
-endmacro(SLAM_PARENT_AND_LOCAL_VAR)

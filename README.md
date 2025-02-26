@@ -1,208 +1,281 @@
-[![Actions Status](https://github.com/TheLartians/ModernCppStarter/workflows/MacOS/badge.svg)](https://github.com/TheLartians/ModernCppStarter/actions)
-[![Actions Status](https://github.com/TheLartians/ModernCppStarter/workflows/Windows/badge.svg)](https://github.com/TheLartians/ModernCppStarter/actions)
-[![Actions Status](https://github.com/TheLartians/ModernCppStarter/workflows/Ubuntu/badge.svg)](https://github.com/TheLartians/ModernCppStarter/actions)
-[![Actions Status](https://github.com/TheLartians/ModernCppStarter/workflows/Style/badge.svg)](https://github.com/TheLartians/ModernCppStarter/actions)
-[![Actions Status](https://github.com/TheLartians/ModernCppStarter/workflows/Install/badge.svg)](https://github.com/TheLartians/ModernCppStarter/actions)
-[![codecov](https://codecov.io/gh/TheLartians/ModernCppStarter/branch/master/graph/badge.svg)](https://codecov.io/gh/TheLartians/ModernCppStarter)
+<div align="center">
+  <img src="https://github.com/tiny-dnn/tiny-dnn/blob/master/docs/logo/TinyDNN-logo-letters-alpha-version.png"><br><br>
+</div>
 
-<p align="center">
-  <img src="https://repository-images.githubusercontent.com/254842585/4dfa7580-7ffb-11ea-99d0-46b8fe2f4170" height="175" width="auto" />
-</p>
+-----------------
 
-# ModernCppStarter
+[![Maintainers Wanted](https://img.shields.io/badge/maintainers-wanted-red.svg)](https://github.com/pickhardt/maintainers-wanted)
 
-Setting up a new C++ project usually requires a significant amount of preparation and boilerplate code, even more so for modern C++ projects with tests, executables and continuous integration.
-This template is the result of learnings from many previous projects and should help reduce the work required to setup up a modern C++ project.
+## The project may be abandoned since the maintainer(s) are just looking to move on. In the case anyone is interested in continuing the project, let us know so that we can discuss next steps.
+## Please visit: https://groups.google.com/forum/#!forum/tiny-dnn-dev
+
+-----------------
+
+[![Join the chat at https://gitter.im/tiny-dnn/users](https://badges.gitter.im/tiny-dnn/users.svg)](https://gitter.im/tiny-dnn/users) [![Docs](https://img.shields.io/badge/docs-latest-blue.svg)](http://tiny-dnn.readthedocs.io/) [![License](https://img.shields.io/badge/license-BSD--3--Clause-blue.svg)](https://raw.githubusercontent.com/tiny-dnn/tiny-dnn/master/LICENSE) [![Coverage Status](https://coveralls.io/repos/github/tiny-dnn/tiny-dnn/badge.svg?branch=master)](https://coveralls.io/github/tiny-dnn/tiny-dnn?branch=master)
+
+**tiny-dnn** is a C++14 implementation of deep learning. It is suitable for deep learning on limited computational resource, embedded systems and IoT devices.
+
+| **`Linux/Mac OS`** | **`Windows`** |
+|------------------|-------------|
+|[![Build Status](https://travis-ci.org/tiny-dnn/tiny-dnn.svg?branch=master)](https://travis-ci.org/tiny-dnn/tiny-dnn)|[![Build status](https://ci.appveyor.com/api/projects/status/a5syoifm8ct7b4l2?svg=true)](https://ci.appveyor.com/project/tinydnn/tiny-dnn)|
+
+## Table of contents
+
+* [Features](#features)
+* [Comparison with other libraries](#comparison-with-other-libraries)
+* [Supported networks](#supported-networks)
+* [Dependencies](#dependencies)
+* [Build](#build)
+* [Examples](#examples)
+* [Contributing](#contributing)
+* [References](#references)
+* [License](#license)
+* [Gitter rooms](#gitter-rooms)
+
+Check out the [documentation](http://tiny-dnn.readthedocs.io/) for more info.
+
+## What's New
+- 2016/11/30 [v1.0.0a3 is released!](https://github.com/tiny-dnn/tiny-dnn/tree/v1.0.0a3)
+- 2016/9/14 [tiny-dnn v1.0.0alpha is released!](https://github.com/tiny-dnn/tiny-dnn/releases/tag/v1.0.0a)
+- 2016/8/7  tiny-dnn is now moved to organization account, and renamed into tiny-dnn :)
+- 2016/7/27 [tiny-dnn v0.1.1 released!](https://github.com/tiny-dnn/tiny-dnn/releases/tag/v0.1.1)
 
 ## Features
+- Reasonably fast, without GPU:
+    - With TBB threading and SSE/AVX vectorization.
+    - 98.8% accuracy on MNIST in 13 minutes training (@Core i7-3520M).
+- Portable & header-only:
+    - Runs anywhere as long as you have a compiler which supports C++14.
+    - Just include tiny_dnn.h and write your model in C++. There is nothing to install.
+- Easy to integrate with real applications:
+    - No output to stdout/stderr.
+    - A constant throughput (simple parallelization model, no garbage collection).
+    - Works without throwing an exception.
+    - [Can import caffe's model](https://github.com/tiny-dnn/tiny-dnn/tree/master/examples/caffe_converter).
+- Simply implemented:
+    - A good library for learning neural networks.
 
-- [Modern CMake practices](https://pabloariasal.github.io/2018/02/19/its-time-to-do-cmake-right/)
-- Suited for single header libraries and projects of any scale
-- Clean separation of library and executable code
-- Integrated test suite
-- Continuous integration via [GitHub Actions](https://help.github.com/en/actions/)
-- Code coverage via [codecov](https://codecov.io)
-- Code formatting enforced by [clang-format](https://clang.llvm.org/docs/ClangFormat.html) and [cmake-format](https://github.com/cheshirekow/cmake_format) via [Format.cmake](https://github.com/TheLartians/Format.cmake)
-- Reproducible dependency management via [CPM.cmake](https://github.com/TheLartians/CPM.cmake)
-- Installable target with automatic versioning information and header generation via [PackageProject.cmake](https://github.com/TheLartians/PackageProject.cmake)
-- Automatic [documentation](https://thelartians.github.io/ModernCppStarter) and deployment with [Doxygen](https://www.doxygen.nl) and [GitHub Pages](https://pages.github.com)
-- Support for [sanitizer tools, and more](#additional-tools)
+## Comparison with other libraries
 
-## Usage
+Please see [wiki page](https://github.com/tiny-dnn/tiny-dnn/wiki/Comparison-with-other-libraries).
 
-### Adjust the template to your needs
+## Supported networks
+### layer-types
+- core
+    - fully connected
+    - dropout
+    - linear operation
+    - zero padding
+    - power
+- convolution
+    - convolutional
+    - average pooling
+    - max pooling
+    - deconvolutional
+    - average unpooling
+	- max unpooling
+- normalization
+    - contrast normalization (only forward pass)
+    - batch normalization
+- split/merge
+    - concat
+    - slice
+    - elementwise-add
 
-- Use this repo [as a template](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template).
-- Replace all occurrences of "Greeter" in the relevant CMakeLists.txt with the name of your project
-  - Capitalization matters here: `Greeter` means the name of the project, while `greeter` is used in file names.
-  - Remember to rename the `include/greeter` directory to use your project's lowercase name and update all relevant `#include`s accordingly.
-- Replace the source files with your own
-- For header-only libraries: see the comments in [CMakeLists.txt](CMakeLists.txt)
-- Add [your project's codecov token](https://docs.codecov.io/docs/quick-start) to your project's github secrets under `CODECOV_TOKEN`
-- Happy coding!
+### activation functions
+* tanh
+* asinh
+* sigmoid
+* softmax
+* softplus
+* softsign
+* rectified linear(relu)
+* leaky relu
+* identity
+* scaled tanh
+* exponential linear units(elu)
+* scaled exponential linear units (selu)
 
-Eventually, you can remove any unused files, such as the standalone directory or irrelevant github workflows for your project.
-Feel free to replace the License with one suited for your project.
+### loss functions
+* cross-entropy
+* mean squared error
+* mean absolute error
+* mean absolute error with epsilon range
 
-To cleanly separate the library and subproject code, the outer `CMakeList.txt` only defines the library itself while the tests and other subprojects are self-contained in their own directories. 
-During development it is usually convenient to [build all subprojects at once](#build-everything-at-once).
+### optimization algorithms
+* stochastic gradient descent (with/without L2 normalization)
+* momentum and Nesterov momentum
+* adagrad
+* rmsprop
+* adam
+* adamax
 
-### Build and run the standalone target
+## Dependencies
+Nothing. All you need is a C++14 compiler (gcc 4.9+, clang 3.6+ or VS 2015+).
 
-Use the following command to build and run the executable target.
+## Build
+tiny-dnn is header-only, so *there's nothing to build*. If you want to execute sample program or unit tests, you need to install [cmake](https://cmake.org/) and type the following commands:
 
-```bash
-cmake -S standalone -B build/standalone
-cmake --build build/standalone
-./build/standalone/Greeter --help
+```
+cmake . -DBUILD_EXAMPLES=ON
+make
 ```
 
-### Build and run test suite
+Then change to `examples` directory and run executable files.
 
-Use the following commands from the project's root directory to run the test suite.
+If you would like to use IDE like Visual Studio or Xcode, you can also use cmake to generate corresponding files:
 
-```bash
-cmake -S test -B build/test
-cmake --build build/test
-CTEST_OUTPUT_ON_FAILURE=1 cmake --build build/test --target test
-
-# or simply call the executable: 
-./build/test/GreeterTests
+```
+cmake . -G "Xcode"            # for Xcode users
+cmake . -G "NMake Makefiles"  # for Windows Visual Studio users
 ```
 
-To collect code coverage information, run CMake with the `-DENABLE_TEST_COVERAGE=1` option.
+Then open .sln file in visual studio and build(on windows/msvc), or type ```make``` command(on linux/mac/windows-mingw).
 
-### Run clang-format
+Some cmake options are available:
 
-Use the following commands from the project's root directory to check and fix C++ and CMake source style.
-This requires _clang-format_, _cmake-format_ and _pyyaml_ to be installed on the current system.
+|options|description|default|additional requirements to use|
+|-----|-----|----|----|
+|USE_TBB|Use [Intel TBB](https://www.threadingbuildingblocks.org/) for parallelization|OFF<sup>1</sup>|[Intel TBB](https://www.threadingbuildingblocks.org/)|
+|USE_OMP|Use OpenMP for parallelization|OFF<sup>1</sup>|[OpenMP Compiler](http://openmp.org/wp/openmp-compilers/)|
+|USE_SSE|Use Intel SSE instruction set|ON|Intel CPU which supports SSE|
+|USE_AVX|Use Intel AVX instruction set|ON|Intel CPU which supports AVX|
+|USE_AVX2|Build tiny-dnn with AVX2 library support|OFF|Intel CPU which supports AVX2|
+|USE_NNPACK|Use NNPACK for convolution operation|OFF|[Acceleration package for neural networks on multi-core CPUs](https://github.com/Maratyszcza/NNPACK)|
+|USE_OPENCL|Enable/Disable OpenCL support (experimental)|OFF|[The open standard for parallel programming of heterogeneous systems](https://www.khronos.org/opencl/)|
+|USE_LIBDNN|Use Greentea LibDNN for convolution operation with GPU via OpenCL (experimental)|OFF|[An universal convolution implementation supporting CUDA and OpenCL](https://github.com/naibaf7/libdnn)|
+|USE_SERIALIZER|Enable model serialization|ON<sup>2</sup>|-|
+|USE_DOUBLE|Use double precision computations instead of single precision|OFF|-|
+|USE_ASAN|Use Address Sanitizer|OFF|clang or gcc compiler|
+|USE_IMAGE_API|Enable Image API support|ON|-|
+|USE_GEMMLOWP|Enable gemmlowp support|OFF|-|
+|BUILD_TESTS|Build unit tests|OFF<sup>3</sup>|-|
+|BUILD_EXAMPLES|Build example projects|OFF|-|
+|BUILD_DOCS|Build documentation|OFF|[Doxygen](http://www.doxygen.org/)|
+|PROFILE|Build unit tests|OFF|gprof|
 
+<sup>1</sup> tiny-dnn use C++14 standard library for parallelization by default.
+
+<sup>2</sup> If you don't use serialization, you can switch off to speedup compilation time.
+
+<sup>3</sup> tiny-dnn uses [Google Test](https://github.com/google/googletest) as default framework to run unit tests. No pre-installation required, it's  automatically downloaded during CMake configuration.
+
+For example, type the following commands if you want to use Intel TBB and build tests:
 ```bash
-cmake -S test -B build/test
-
-# view changes
-cmake --build build/test --target format
-
-# apply changes
-cmake --build build/test --target fix-format
+cmake -DUSE_TBB=ON -DBUILD_TESTS=ON .
 ```
 
-See [Format.cmake](https://github.com/TheLartians/Format.cmake) for details.
-These dependencies can be easily installed using pip.
+## Customize configurations
+You can edit include/config.h to customize default behavior.
 
-```bash
-pip install clang-format==14.0.6 cmake_format==0.6.11 pyyaml
+## Examples
+Construct convolutional neural networks
+
+```cpp
+#include "tiny_dnn/tiny_dnn.h"
+using namespace tiny_dnn;
+using namespace tiny_dnn::activation;
+using namespace tiny_dnn::layers;
+
+void construct_cnn() {
+    using namespace tiny_dnn;
+
+    network<sequential> net;
+
+    // add layers
+    net << conv(32, 32, 5, 1, 6) << tanh()  // in:32x32x1, 5x5conv, 6fmaps
+        << ave_pool(28, 28, 6, 2) << tanh() // in:28x28x6, 2x2pooling
+        << fc(14 * 14 * 6, 120) << tanh()   // in:14x14x6, out:120
+        << fc(120, 10);                     // in:120,     out:10
+
+    assert(net.in_data_size() == 32 * 32);
+    assert(net.out_data_size() == 10);
+
+    // load MNIST dataset
+    std::vector<label_t> train_labels;
+    std::vector<vec_t> train_images;
+
+    parse_mnist_labels("train-labels.idx1-ubyte", &train_labels);
+    parse_mnist_images("train-images.idx3-ubyte", &train_images, -1.0, 1.0, 2, 2);
+
+    // declare optimization algorithm
+    adagrad optimizer;
+
+    // train (50-epoch, 30-minibatch)
+    net.train<mse, adagrad>(optimizer, train_images, train_labels, 30, 50);
+
+    // save
+    net.save("net");
+
+    // load
+    // network<sequential> net2;
+    // net2.load("net");
+}
+```
+Construct multi-layer perceptron (mlp)
+
+```cpp
+#include "tiny_dnn/tiny_dnn.h"
+using namespace tiny_dnn;
+using namespace tiny_dnn::activation;
+using namespace tiny_dnn::layers;
+
+void construct_mlp() {
+    network<sequential> net;
+
+    net << fc(32 * 32, 300) << sigmoid() << fc(300, 10);
+
+    assert(net.in_data_size() == 32 * 32);
+    assert(net.out_data_size() == 10);
+}
 ```
 
-### Build the documentation
+Another way to construct mlp
 
-The documentation is automatically built and [published](https://thelartians.github.io/ModernCppStarter) whenever a [GitHub Release](https://help.github.com/en/github/administering-a-repository/managing-releases-in-a-repository) is created.
-To manually build documentation, call the following command.
+```cpp
+#include "tiny_dnn/tiny_dnn.h"
+using namespace tiny_dnn;
+using namespace tiny_dnn::activation;
 
-```bash
-cmake -S documentation -B build/doc
-cmake --build build/doc --target GenerateDocs
-# view the docs
-open build/doc/doxygen/html/index.html
+void construct_mlp() {
+    auto mynet = make_mlp<tanh>({ 32 * 32, 300, 10 });
+
+    assert(mynet.in_data_size() == 32 * 32);
+    assert(mynet.out_data_size() == 10);
+}
 ```
 
-To build the documentation locally, you will need Doxygen, jinja2 and Pygments installed on your system.
+For more samples, read examples/main.cpp or [MNIST example](https://github.com/tiny-dnn/tiny-dnn/tree/master/examples/mnist) page.
 
-### Build everything at once
+## Contributing
+Since deep learning community is rapidly growing, we'd love to get contributions from you to accelerate tiny-dnn development!
+For a quick guide to contributing, take a look at the [Contribution Documents](CONTRIBUTING.md).
 
-The project also includes an `all` directory that allows building all targets at the same time.
-This is useful during development, as it exposes all subprojects to your IDE and avoids redundant builds of the library.
+## References
+[1] Y. Bengio, [Practical Recommendations for Gradient-Based Training of Deep Architectures.](http://arxiv.org/pdf/1206.5533v2.pdf)
+    arXiv:1206.5533v2, 2012
 
-```bash
-cmake -S all -B build
-cmake --build build
+[2] Y. LeCun, L. Bottou, Y. Bengio, and P. Haffner, [Gradient-based learning applied to document recognition.](http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf)
+    Proceedings of the IEEE, 86, 2278-2324.
 
-# run tests
-./build/test/GreeterTests
-# format code
-cmake --build build --target fix-format
-# run standalone
-./build/standalone/Greeter --help
-# build docs
-cmake --build build --target GenerateDocs
-```
+Other useful reference lists:
+- [UFLDL Recommended Readings](http://deeplearning.stanford.edu/wiki/index.php/UFLDL_Recommended_Readings)
+- [deeplearning.net reading list](http://deeplearning.net/reading-list/)
 
-### Additional tools
+## License
+The BSD 3-Clause License
 
-The test and standalone subprojects include the [tools.cmake](cmake/tools.cmake) file which is used to import additional tools on-demand through CMake configuration arguments.
-The following are currently supported.
+## Gitter rooms
+We have gitter rooms for discussing new features & QA.
+Feel free to join us!
 
-#### Sanitizers
-
-Sanitizers can be enabled by configuring CMake with `-DUSE_SANITIZER=<Address | Memory | MemoryWithOrigins | Undefined | Thread | Leak | 'Address;Undefined'>`.
-
-#### Static Analyzers
-
-Static Analyzers can be enabled by setting `-DUSE_STATIC_ANALYZER=<clang-tidy | iwyu | cppcheck>`, or a combination of those in quotation marks, separated by semicolons.
-By default, analyzers will automatically find configuration files such as `.clang-format`.
-Additional arguments can be passed to the analyzers by setting the `CLANG_TIDY_ARGS`, `IWYU_ARGS` or `CPPCHECK_ARGS` variables.
-
-#### Ccache
-
-Ccache can be enabled by configuring with `-DUSE_CCACHE=<ON | OFF>`.
-
-## FAQ
-
-> Can I use this for header-only libraries?
-
-Yes, however you will need to change the library type to an `INTERFACE` library as documented in the [CMakeLists.txt](CMakeLists.txt).
-See [here](https://github.com/TheLartians/StaticTypeInfo) for an example header-only library based on the template.
-
-> I don't need a standalone target / documentation. How can I get rid of it?
-
-Simply remove the standalone / documentation directory and according github workflow file.
-
-> Can I build the standalone and tests at the same time? / How can I tell my IDE about all subprojects?
-
-To keep the template modular, all subprojects derived from the library have been separated into their own CMake modules.
-This approach makes it trivial for third-party projects to re-use the projects library code.
-To allow IDEs to see the full scope of the project, the template includes the `all` directory that will create a single build for all subprojects.
-Use this as the main directory for best IDE support.
-
-> I see you are using `GLOB` to add source files in CMakeLists.txt. Isn't that evil?
-
-Glob is considered bad because any changes to the source file structure [might not be automatically caught](https://cmake.org/cmake/help/latest/command/file.html#filesystem) by CMake's builders and you will need to manually invoke CMake on changes.
-  I personally prefer the `GLOB` solution for its simplicity, but feel free to change it to explicitly listing sources.
-
-> I want create additional targets that depend on my library. Should I modify the main CMakeLists to include them?
-
-Avoid including derived projects from the libraries CMakeLists (even though it is a common sight in the C++ world), as this effectively inverts the dependency tree and makes the build system hard to reason about.
-Instead, create a new directory or project with a CMakeLists that adds the library as a dependency (e.g. like the [standalone](standalone/CMakeLists.txt) directory).
-Depending type it might make sense move these components into a separate repositories and reference a specific commit or version of the library.
-This has the advantage that individual libraries and components can be improved and updated independently.
-
-> You recommend to add external dependencies using CPM.cmake. Will this force users of my library to use CPM.cmake as well?
-
-[CPM.cmake](https://github.com/TheLartians/CPM.cmake) should be invisible to library users as it's a self-contained CMake Script.
-If problems do arise, users can always opt-out by defining the CMake or env variable [`CPM_USE_LOCAL_PACKAGES`](https://github.com/cpm-cmake/CPM.cmake#options), which will override all calls to `CPMAddPackage` with the according `find_package` call.
-This should also enable users to use the project with their favorite external C++ dependency manager, such as vcpkg or Conan.
-
-> Can I configure and build my project offline?
-
-No internet connection is required for building the project, however when using CPM missing dependencies are downloaded at configure time.
-To avoid redundant downloads, it's highly recommended to set a CPM.cmake cache directory, e.g.: `export CPM_SOURCE_CACHE=$HOME/.cache/CPM`.
-This will enable shallow clones and allow offline configurations dependencies are already available in the cache.
-
-> Can I use CPack to create a package installer for my project?
-
-As there are a lot of possible options and configurations, this is not (yet) in the scope of this template. See the [CPack documentation](https://cmake.org/cmake/help/latest/module/CPack.html) for more information on setting up CPack installers.
-
-> This is too much, I just want to play with C++ code and test some libraries.
-
-Perhaps the [MiniCppStarter](https://github.com/TheLartians/MiniCppStarter) is something for you!
-
-## Related projects and alternatives
-
-- [**ModernCppStarter & PVS-Studio Static Code Analyzer**](https://github.com/viva64/pvs-studio-cmake-examples/tree/master/modern-cpp-starter): Official instructions on how to use the ModernCppStarter with the PVS-Studio Static Code Analyzer.
-- [**cpp-best-practices/gui_starter_template**](https://github.com/cpp-best-practices/gui_starter_template/): A popular C++ starter project, created in 2017.
-- [**filipdutescu/modern-cpp-template**](https://github.com/filipdutescu/modern-cpp-template): A recent starter using a more traditional approach for CMake structure and dependency management.
-- [**vector-of-bool/pitchfork**](https://github.com/vector-of-bool/pitchfork/): Pitchfork is a Set of C++ Project Conventions.
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=TheLartians/ModernCppStarter,cpp-best-practices/gui_starter_template,filipdutescu/modern-cpp-template&type=Date)](https://star-history.com/#TheLartians/ModernCppStarter&cpp-best-practices/gui_starter_template&filipdutescu/modern-cpp-template&Date)
+<table>
+<tr>
+    <td><b> developers </b></td>
+    <td> https://gitter.im/tiny-dnn/developers </td>
+</tr>
+<tr>
+    <td><b> users </b></td>
+    <td> https://gitter.im/tiny-dnn/users </td>
+</tr>
+</table>
