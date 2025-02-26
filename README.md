@@ -2,13 +2,15 @@
   <img src="https://github.com/tiny-dnn/tiny-dnn/blob/master/docs/logo/TinyDNN-logo-letters-alpha-version.png"><br><br>
 </div>
 
+[![ubuntu](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/ubuntu.yml/badge.svg)](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/ubuntu.yml)
+[![MacOS](https://github.com/TheLartians/ModernCppStarter/actions/workflows/macos.yml/badge.svg)](https://github.com/TheLartians/ModernCppStarter/actions/workflows/macos.yml)
+[![Windows](https://github.com/TheLartians/ModernCppStarter/actions/workflows/windows.yml/badge.svg)](https://github.com/TheLartians/ModernCppStarter/actions/workflows/windows.yml)
+[![documentation](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/documentation.yml/badge.svg)](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/documentation.yml)
 
 **tiny-dnn** is a C++14 implementation of deep learning. It is suitable for deep learning on limited computational resource, embedded systems and IoT devices.
 
-[![ubuntu](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/ubuntu.yml/badge.svg)](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/ubuntu.yml)
-[![documentation](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/documentation.yml/badge.svg)](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/documentation.yml)
 
-**Maintainer:** [Wissem Chiha](https://github.com/chihawissem08@gmail.com)
+**Maintainer:** [Wissem Chiha](https://github.com/wissem01chiha)
 
 ## Table of contents
 
