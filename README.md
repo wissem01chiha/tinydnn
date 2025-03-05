@@ -3,42 +3,23 @@
 </div>
 
 [![ubuntu](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/ubuntu.yml/badge.svg)](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/ubuntu.yml)
-[![MacOS](https://github.com/TheLartians/ModernCppStarter/actions/workflows/macos.yml/badge.svg)](https://github.com/TheLartians/ModernCppStarter/actions/workflows/macos.yml)
-[![Windows](https://github.com/TheLartians/ModernCppStarter/actions/workflows/windows.yml/badge.svg)](https://github.com/TheLartians/ModernCppStarter/actions/workflows/windows.yml)
+[![Windows](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/windows.yml/badge.svg)](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/windows.yml)
+[![MacOS](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/macos.yml/badge.svg)](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/macos.yml)
 [![documentation](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/documentation.yml/badge.svg)](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/documentation.yml)
+[![Style](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/style.yml/badge.svg)](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/style.yml)
 
 **tiny-dnn** is a C++14 implementation of deep learning. It is suitable for deep learning on limited computational resource, embedded systems and IoT devices.
-
-
-**Maintainer:** [Wissem Chiha](https://github.com/wissem01chiha)
 
 ## Table of contents
 
 - [Table of contents](#table-of-contents)
-- [What's New](#whats-new)
 - [Features](#features)
-- [Comparison with other libraries](#comparison-with-other-libraries)
-- [Supported networks](#supported-networks)
-  - [layer-types](#layer-types)
-  - [activation functions](#activation-functions)
-  - [loss functions](#loss-functions)
-  - [optimization algorithms](#optimization-algorithms)
 - [Dependencies](#dependencies)
 - [Build](#build)
-- [Customize configurations](#customize-configurations)
 - [Examples](#examples)
 - [Contributing](#contributing)
 - [References](#references)
 - [License](#license)
-- [Gitter rooms](#gitter-rooms)
-
-Check out the [documentation](http://tiny-dnn.readthedocs.io/) for more info.
-
-## What's New
-- 2016/11/30 [v1.0.0a3 is released!](https://github.com/tiny-dnn/tiny-dnn/tree/v1.0.0a3)
-- 2016/9/14 [tiny-dnn v1.0.0alpha is released!](https://github.com/tiny-dnn/tiny-dnn/releases/tag/v1.0.0a)
-- 2016/8/7  tiny-dnn is now moved to organization account, and renamed into tiny-dnn :)
-- 2016/7/27 [tiny-dnn v0.1.1 released!](https://github.com/tiny-dnn/tiny-dnn/releases/tag/v0.1.1)
 
 ## Features
 - Reasonably fast, without GPU:
@@ -54,61 +35,6 @@ Check out the [documentation](http://tiny-dnn.readthedocs.io/) for more info.
     - [Can import caffe's model](https://github.com/tiny-dnn/tiny-dnn/tree/master/examples/caffe_converter).
 - Simply implemented:
     - A good library for learning neural networks.
-
-## Comparison with other libraries
-
-Please see [wiki page](https://github.com/tiny-dnn/tiny-dnn/wiki/Comparison-with-other-libraries).
-
-## Supported networks
-### layer-types
-- core
-    - fully connected
-    - dropout
-    - linear operation
-    - zero padding
-    - power
-- convolution
-    - convolutional
-    - average pooling
-    - max pooling
-    - deconvolutional
-    - average unpooling
-	- max unpooling
-- normalization
-    - contrast normalization (only forward pass)
-    - batch normalization
-- split/merge
-    - concat
-    - slice
-    - elementwise-add
-
-### activation functions
-* tanh
-* asinh
-* sigmoid
-* softmax
-* softplus
-* softsign
-* rectified linear(relu)
-* leaky relu
-* identity
-* scaled tanh
-* exponential linear units(elu)
-* scaled exponential linear units (selu)
-
-### loss functions
-* cross-entropy
-* mean squared error
-* mean absolute error
-* mean absolute error with epsilon range
-
-### optimization algorithms
-* stochastic gradient descent (with/without L2 normalization)
-* momentum and Nesterov momentum
-* adagrad
-* rmsprop
-* adam
-* adamax
 
 ## Dependencies
 Nothing. All you need is a C++14 compiler (gcc 4.9+, clang 3.6+ or VS 2015+).
@@ -155,18 +81,13 @@ Some cmake options are available:
 |PROFILE|Build unit tests|OFF|gprof|
 
 <sup>1</sup> tiny-dnn use C++14 standard library for parallelization by default.
-
 <sup>2</sup> If you don't use serialization, you can switch off to speedup compilation time.
-
 <sup>3</sup> tiny-dnn uses [Google Test](https://github.com/google/googletest) as default framework to run unit tests. No pre-installation required, it's  automatically downloaded during CMake configuration.
 
 For example, type the following commands if you want to use Intel TBB and build tests:
 ```bash
 cmake -DUSE_TBB=ON -DBUILD_TESTS=ON .
 ```
-
-## Customize configurations
-You can edit include/config.h to customize default behavior.
 
 ## Examples
 Construct convolutional neural networks
@@ -264,18 +185,3 @@ Other useful reference lists:
 
 ## License
 The BSD 3-Clause License
-
-## Gitter rooms
-We have gitter rooms for discussing new features & QA.
-Feel free to join us!
-
-<table>
-<tr>
-    <td><b> developers </b></td>
-    <td> https://gitter.im/tiny-dnn/developers </td>
-</tr>
-<tr>
-    <td><b> users </b></td>
-    <td> https://gitter.im/tiny-dnn/users </td>
-</tr>
-</table>
