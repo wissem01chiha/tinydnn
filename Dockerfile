@@ -1,8 +1,6 @@
-FROM ubuntu:17.04
+FROM ubuntu:22.04 AS build 
 
-MAINTAINER Edgar Riba <edgar.riba@gmail.com>
-
-# install basic stuff
+MAINTAINER Wissem Chiha <chihawissem08@gmail.com>
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential       \
@@ -14,13 +12,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN pip install --upgrade pip
 
-# install optional dependencies
 
 RUN apt-get install -y    \
     libpthread-stubs0-dev \
     libtbb-dev
-
-# install linters
 
 RUN apt-get install -y    \
     clang-format-4.0
