@@ -1,14 +1,13 @@
 FROM ubuntu:22.04 AS build 
 
-MAINTAINER Wissem Chiha <chihawissem08@gmail.com>
+LABEL org.opencontainers.image.authors="chihawissem08@gmail.com"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential       \
     cmake                 \
     python-pip            \
     python-setuptools     \
-    git                   \
-    vim
+    git                   
 
 RUN pip install --upgrade pip
 

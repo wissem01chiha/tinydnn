@@ -1,6 +1,3 @@
-<div align="center">
-  <img src="https://github.com/tiny-dnn/tiny-dnn/blob/master/docs/logo/TinyDNN-logo-letters-alpha-version.png"><br><br>
-</div>
 
 [![ubuntu](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/ubuntu.yml/badge.svg)](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/ubuntu.yml)
 [![Windows](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/windows.yml/badge.svg)](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/windows.yml)
@@ -173,15 +170,6 @@ Since deep learning community is rapidly growing, we'd love to get contributions
 For a quick guide to contributing, take a look at the [Contribution Documents](CONTRIBUTING.md).
 
 ## References
-[1] Y. Bengio, [Practical Recommendations for Gradient-Based Training of Deep Architectures.](http://arxiv.org/pdf/1206.5533v2.pdf)
-    arXiv:1206.5533v2, 2012
-
-[2] Y. LeCun, L. Bottou, Y. Bengio, and P. Haffner, [Gradient-based learning applied to document recognition.](http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf)
-    Proceedings of the IEEE, 86, 2278-2324.
-
-Other useful reference lists:
-- [UFLDL Recommended Readings](http://deeplearning.stanford.edu/wiki/index.php/UFLDL_Recommended_Readings)
-- [deeplearning.net reading list](http://deeplearning.net/reading-list/)
 
 ## License
 The BSD 3-Clause License
