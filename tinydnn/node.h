@@ -17,10 +17,10 @@
 #include <unordered_set>
 #include <vector>
 
-#include "tiny_dnn/optimizers/optimizer.h"
-#include "tiny_dnn/util/product.h"
-#include "tiny_dnn/util/util.h"
-#include "tiny_dnn/util/weight_init.h"
+#include "tinydnn/optimizers/optimizers.h"
+#include "tinydnn/utils/product.h"
+#include "tinydnn/utils/utils.h"
+#include "tinydnn/utils/weight_init.h"
 
 #ifdef DNN_USE_IMAGE_API
 #include "tiny_dnn/util/image.h"

@@ -7,9 +7,9 @@
 */
 #pragma once
 
-#include "tiny_dnn/util/util.h"
+#include "tinydnn/utils/utils.h"
 
-namespace tiny_dnn {
+namespace tinydnn {
 namespace weight_init {
 
 class function {
@@ -108,4 +108,4 @@ class he : public scalable {
 };
 
 }  // namespace weight_init
-}  // namespace tiny_dnn
+}  // namespace tinydnn

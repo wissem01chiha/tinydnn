@@ -9,10 +9,9 @@
 
 #include <algorithm>
 #include <unordered_map>
+#include "tinydnn/utils/utils.h"
 
-#include "tiny_dnn/util/util.h"
-
-namespace tiny_dnn {
+namespace tinydnn {
 
 /**
  * base class of optimizer
@@ -244,4 +243,4 @@ struct nesterov_momentum : public stateful_optimizer<1> {
   float_t mu;      // momentum
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

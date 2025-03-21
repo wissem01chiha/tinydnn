@@ -79,7 +79,7 @@
 #define CNN_TASK_SIZE 8
 #endif
 
-namespace tiny_dnn {
+namespace tinydnn {
 
 /**
  * calculation data type
@@ -91,4 +91,4 @@ typedef double float_t;
 typedef float float_t;
 #endif
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

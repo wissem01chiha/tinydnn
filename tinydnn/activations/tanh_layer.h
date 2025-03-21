@@ -9,9 +9,8 @@
 
 #include <string>
 #include <utility>
-
-#include "tiny_dnn/activations/activation_layer.h"
-#include "tiny_dnn/layers/layer.h"
+#include "tinydnn/activations/activation_layer.h"
+#include "tinydnn/layers/layer.h"
 
 namespace tiny_dnn {
 
@@ -44,4 +43,4 @@ class tanh_layer : public activation_layer {
   friend struct serialization_buddy;
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

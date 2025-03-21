@@ -21,11 +21,11 @@
 #include "tinydnn/core/backend.h"
 #include "tinydnn/core/framework/device.fwd.h"
 #include "tinydnn/node.h"
-#include "tinydnn/util/parallel_for.h"
-#include "tinydnn/util/product.h"
-#include "tinydnn/util/util.h"
-#include "tinydnn/util/weight_init.h"
-#include "tinydnn/optimizers/optimizer.h"
+#include "tinydnn/utils/parallel_for.h"
+#include "tinydnn/utils/product.h"
+#include "tinydnn/utils/utils.h"
+#include "tinydnn/utils/weight_init.h"
+#include "tinydnn/optimizers/optimizers.h"
 
 #ifdef DNN_USE_IMAGE_API
 #include "tinydnn/image/image.h"
