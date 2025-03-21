@@ -11,7 +11,7 @@
 #include <sstream>
 #include <string>
 
-namespace tiny_dnn {
+namespace tinydnn {
 
 inline std::shared_ptr<network<sequential>> create_net_from_json(
   const std::string &caffemodeljson, const shape3d &shape = shape3d()) {

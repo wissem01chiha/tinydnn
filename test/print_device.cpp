@@ -6,9 +6,9 @@
     in the LICENSE file.
 */
 
-#include "tiny_dnn/tiny_dnn.h"
+#include "tinydnn/tinydnn.h"
 
-using namespace tiny_dnn;
+using namespace tinydnn;
 
 int main(int argc, char *argv[]) {
 #if defined(USE_OPENCL) || defined(USE_CUDA)
