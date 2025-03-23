@@ -6,11 +6,12 @@
     in the LICENSE file.
 */
 #pragma once
-#include "tiny_dnn/layers/gru_cell.h"
-#include "tiny_dnn/layers/lstm_cell.h"
-#include "tiny_dnn/layers/rnn_cell.h"
 
-namespace tiny_dnn {
+#include "tinydnn/layers/gru_cell.h"
+#include "tinydnn/layers/lstm_cell.h"
+#include "tinydnn/layers/rnn_cell.h"
+
+namespace tinydnn {
 // Wrappers for the cell constructors should be placed here.
 
 // rnn cell:
@@ -36,4 +37,4 @@ inline std::shared_ptr<cell> lstm(
   const lstm_cell_parameters params = lstm_cell_parameters()) {
   return std::make_shared<lstm_cell>(lstm_cell(in_dim, out_dim, params));
 }
-}  // namespace tiny_dnn
+}  // namespace tinydnn

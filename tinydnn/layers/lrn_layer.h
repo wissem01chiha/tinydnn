@@ -10,10 +10,9 @@
 #include <algorithm>
 #include <string>
 #include <vector>
+#include "tinydnn/utils/utils.h"
 
-#include "tiny_dnn/util/util.h"
-
-namespace tiny_dnn {
+namespace tinydnn {
 
 enum class norm_region { across_channels, within_channels };
 
@@ -164,4 +163,4 @@ class lrn_layer : public layer {
   vec_t in_square_;
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

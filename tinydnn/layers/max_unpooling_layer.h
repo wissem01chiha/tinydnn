@@ -10,14 +10,11 @@
 #include <algorithm>
 #include <string>
 #include <vector>
+#include "tinydnn/utils/utils.h"
+#include "tinydnn/util/image.h"
 
-#include "tiny_dnn/util/util.h"
 
-#ifdef DNN_USE_IMAGE_API
-#include "tiny_dnn/util/image.h"
-#endif
-
-namespace tiny_dnn {
+namespace tinydnn {
 
 /**
  * applies max-pooing operaton to the spatial data
@@ -180,4 +177,4 @@ class max_unpooling_layer : public layer {
   }
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

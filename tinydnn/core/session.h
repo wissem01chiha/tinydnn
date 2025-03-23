@@ -10,7 +10,6 @@
 #include <memory>
 #include <string>
 #include <vector>
-
 #include "tinydnn/core/device.h"
 
 namespace tinydnn {

@@ -8,13 +8,13 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "tiny_dnn/activations/sigmoid_layer.h"
-#include "tiny_dnn/activations/tanh_layer.h"
-#include "tiny_dnn/core/kernels/lstm_cell_grad_op.h"
-#include "tiny_dnn/core/kernels/lstm_cell_op.h"
-#include "tiny_dnn/layers/cell.h"
+#include "tinydnn/activations/sigmoid_layer.h"
+#include "tinydnn/activations/tanh_layer.h"
+#include "tinydnn/core/kernels/lstm_cell_grad_op.h"
+#include "tinydnn/core/kernels/lstm_cell_op.h"
+#include "tinydnn/layers/cell.h"
 
-namespace tiny_dnn {
+namespace tinydnn {
 
 /*
  *  Optional LSTM cell parameters
@@ -196,4 +196,4 @@ class lstm_cell : public cell {
   std::shared_ptr<core::OpKernel> kernel_back_;
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

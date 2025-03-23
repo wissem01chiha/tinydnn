@@ -13,7 +13,7 @@
 #include "tinydnn/layers/layer.h"
 #include "tinydnn/utils/utils.h"
 
-namespace tiny_dnn {
+namespace tinydnn {
 
 /**
  * applies dropout to the input
@@ -143,4 +143,4 @@ class dropout_layer : public layer {
   std::vector<std::vector<uint8_t>> mask_;
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

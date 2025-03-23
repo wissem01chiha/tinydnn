@@ -18,18 +18,16 @@
 #include <unordered_set>
 #include <utility>
 #include <vector>
-#include "tinydnn/core/backend.h"
+#include "tinydnn/backend/backend.h"
 #include "tinydnn/core/framework/device.fwd.h"
 #include "tinydnn/node.h"
 #include "tinydnn/utils/parallel_for.h"
 #include "tinydnn/utils/product.h"
 #include "tinydnn/utils/utils.h"
 #include "tinydnn/utils/weight_init.h"
-#include "tinydnn/optimizers/optimizers.h"
-
-#ifdef DNN_USE_IMAGE_API
+#include "tinydnn/optimizer/optimizer.h"
 #include "tinydnn/image/image.h"
-#endif
+
 
 namespace tinydnn {
 

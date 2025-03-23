@@ -14,12 +14,12 @@
 #include <vector>
 
 #ifndef CNN_NO_SERIALIZATION
-#include <cereal/types/tuple.hpp>
-#include <cereal/types/utility.hpp>
+#include "thirdparty/cereal/types/tuple.hpp"
+#include "thirdparty/cereal/types/utility.hpp"
 #endif
 
 #include "tinydnn/layers/layer.h"
-#include "tinydnn/optimizers/optimizers.h"
+#include "tinydnn/optimizer/optimizer.h"
 #include "tinydnn/utils/utils.h"
 
 namespace cereal {
@@ -33,7 +33,7 @@ void save(Archive &ar, const std::vector<tinydnn::layer *> &v) {
   }
 #else
   throw tinydnn::nn_error("tiny-dnn was not built with Serialization support");
-#endif  // CNN_NO_SERIALIZATION
+#endif  // NO_SERIALIZATION
 }
 
 template <typename Archive>

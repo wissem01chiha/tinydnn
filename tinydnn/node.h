@@ -16,17 +16,14 @@
 #include <sstream>
 #include <unordered_set>
 #include <vector>
-
-#include "tinydnn/optimizers/optimizers.h"
+#include "tinydnn/optimizer/optimizer.h"
 #include "tinydnn/utils/product.h"
 #include "tinydnn/utils/utils.h"
 #include "tinydnn/utils/weight_init.h"
+#include "tinydnn/image/image.h"
 
-#ifdef DNN_USE_IMAGE_API
-#include "tiny_dnn/util/image.h"
-#endif
 
-namespace tiny_dnn {
+namespace tinydnn {
 
 class node;
 class layer;
@@ -258,4 +255,4 @@ inline const layer_tuple<layer *> &operator<<(T &lhs,
   }
   return rhs;
 }
-}  // namespace tiny_dnn
+}  // namespace tinydnn

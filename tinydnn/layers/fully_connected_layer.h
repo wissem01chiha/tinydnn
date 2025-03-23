@@ -11,13 +11,11 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include "tinydnn/layers/layer.h"
+#include "tinydnn/core/kernels/fully_connected_grad_op.h"
+#include "tinydnn/core/kernels/fully_connected_op.h"
 
-#include "tiny_dnn/layers/layer.h"
-
-#include "tiny_dnn/core/kernels/fully_connected_grad_op.h"
-#include "tiny_dnn/core/kernels/fully_connected_op.h"
-
-namespace tiny_dnn {
+namespace tinydnn {
 
 /**
  * compute fully-connected(matmul) operation
@@ -133,4 +131,4 @@ class fully_connected_layer : public layer {
   std::shared_ptr<core::OpKernel> kernel_back_;
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

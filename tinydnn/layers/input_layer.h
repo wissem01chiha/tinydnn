@@ -48,4 +48,4 @@ class input_layer : public layer {
   shape3d shape_;
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

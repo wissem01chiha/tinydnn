@@ -9,7 +9,7 @@
 
 #include <vector>
 
-namespace tiny_dnn {
+namespace tinydnn {
 
 struct bounding_box {
   float_t x_min;
@@ -66,4 +66,4 @@ inline std::vector<int> nms(std::vector<bounding_box> &proposals,
   return keeped_bboxes;
 }
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

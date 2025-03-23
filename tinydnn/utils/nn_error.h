@@ -11,10 +11,10 @@
 #include <string>
 #include "tinydnn/utils/colored_print.h"
 
-namespace tiny_dnn {
+namespace tinydnn {
 
 /**
- * error exception class for tiny-dnn
+ * error exception class for tinydnn
  **/
 class nn_error : public std::exception {
  public:
@@ -31,7 +31,7 @@ class nn_error : public std::exception {
 class nn_warn {
  public:
   explicit nn_warn(const std::string &msg) : msg_(msg) {
-#ifdef CNN_USE_STDOUT
+#ifdef USE_STDOUT
     coloredPrint(Color::YELLOW, msg_h_ + msg_);
 #endif
   }
@@ -63,4 +63,4 @@ class nn_not_implemented_error : public nn_error {
     : nn_error(msg) {}
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

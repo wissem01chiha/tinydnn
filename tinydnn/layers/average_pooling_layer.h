@@ -13,10 +13,8 @@
 #include <vector>
 #include "tinydnn/layers/partial_connected_layer.h"
 #include "tinydnn/utils/utils.h"
+#include "tinydnn/utils/image.h"
 
-#ifdef DNN_USE_IMAGE_API
-#include "tinydnn/util/image.h"
-#endif  // DNN_USE_IMAGE_API
 
 namespace tinydnn {
 

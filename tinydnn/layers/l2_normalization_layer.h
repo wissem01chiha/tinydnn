@@ -11,12 +11,11 @@
 #include <limits>
 #include <string>
 #include <vector>
+#include "tinydnn/layers/layer.h"
+#include "tinydnn/util/math_functions.h"
+#include "tinydnn/utils/utils.h"
 
-#include "tiny_dnn/layers/layer.h"
-#include "tiny_dnn/util/math_functions.h"
-#include "tiny_dnn/util/util.h"
-
-namespace tiny_dnn {
+namespace tinydnn {
 
 /**
  * L2 Normalization
@@ -130,4 +129,4 @@ class l2_normalization_layer : public layer {
   float_t scale_;
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

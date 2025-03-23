@@ -10,10 +10,9 @@
 #include <algorithm>
 #include <string>
 #include <vector>
+#include "tinydnn/utils/utils.h"
 
-#include "tiny_dnn/util/util.h"
-
-namespace tiny_dnn {
+namespace tinydnn {
 
 /**
  * element-wise operation: ```f(x) = h(scale*x+bias)```
@@ -84,4 +83,4 @@ class linear_layer : public layer {
   float_t scale_, bias_;
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

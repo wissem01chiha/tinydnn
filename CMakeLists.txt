@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
 # Set variables:
 #   * PROJECT_NAME
 #   * PROJECT_VERSION
-project(tiny_dnn VERSION 1.0.0 LANGUAGES C CXX)
+project(tinydnn VERSION 1.0.0 LANGUAGES C CXX)
 
 #####
 # Enables link_directories() treat paths relative

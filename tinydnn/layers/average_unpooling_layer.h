@@ -10,15 +10,12 @@
 #include <algorithm>
 #include <string>
 #include <vector>
+#include "tinydnn/layers/partial_connected_layer.h"
+#include "tinydnn/util/util.h"
+#include "tinydnn/utils/image.h"
 
-#include "tiny_dnn/layers/partial_connected_layer.h"
-#include "tiny_dnn/util/util.h"
 
-#ifdef DNN_USE_IMAGE_API
-#include "tiny_dnn/util/image.h"
-#endif  // DNN_USE_IMAGE_API
-
-namespace tiny_dnn {
+namespace tinydnn {
 
 // forward_propagation
 inline void tiny_average_unpooling_kernel(
@@ -233,4 +230,4 @@ class average_unpooling_layer : public partial_connected_layer {
   }
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

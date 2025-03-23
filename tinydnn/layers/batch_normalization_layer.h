@@ -11,12 +11,11 @@
 #include <limits>
 #include <string>
 #include <vector>
+#include "tinydnn/layers/layer.h"
+#include "tinydnn/utils/math_functions.h"
+#include "tinydnn/utils/utils.h"
 
-#include "tiny_dnn/layers/layer.h"
-#include "tiny_dnn/util/math_functions.h"
-#include "tiny_dnn/util/util.h"
-
-namespace tiny_dnn {
+namespace tinydnn {
 
 /**
  * Batch Normalization
@@ -255,4 +254,4 @@ class batch_normalization_layer : public layer {
   bool update_immidiately_;
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

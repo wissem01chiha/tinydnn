@@ -23,18 +23,17 @@
 
 #include "thirdparty/xtensor/xarray.hpp"
 #include "thirdparty/xtensor/xview.hpp"
-
 #include "tinydnn/config.h"
 
-#ifndef CNN_NO_SERIALIZATION
-#include <cereal/archives/binary.hpp>
-#include <cereal/archives/json.hpp>
-#include <cereal/archives/portable_binary.hpp>
-#include <cereal/cereal.hpp>
-#include <cereal/types/deque.hpp>
-#include <cereal/types/polymorphic.hpp>
-#include <cereal/types/string.hpp>
-#include <cereal/types/vector.hpp>
+#ifndef NO_SERIALIZATION
+#include <thirdparty/cereal/archives/binary.hpp>
+#include <thirdparty/cereal/archives/json.hpp>
+#include <thirdparty/cereal/archives/portable_binary.hpp>
+#include <thirdparty/cereal/cereal.hpp>
+#include <thirdparty/cereal/types/deque.hpp>
+#include <thirdparty/cereal/types/polymorphic.hpp>
+#include <thirdparty/cereal/types/string.hpp>
+#include <thirdparty/cereal/types/vector.hpp>
 #endif
 
 #include "tinydnn/utils/aligned_allocator.h"

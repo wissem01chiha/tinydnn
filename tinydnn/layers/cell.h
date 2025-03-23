@@ -6,11 +6,12 @@
     in the LICENSE file.
 */
 #pragma once
-#include <vector>
-#include "tiny_dnn/core/backend.h"
-#include "tiny_dnn/core/framework/device.fwd.h"
 
-namespace tiny_dnn {
+#include <vector>
+#include "tinydnn/backend/backend.h"
+#include "tinydnn/core/framework/device.fwd.h"
+
+namespace tinydnn {
 
 /**
  * Abstract class for recurrent cells.
@@ -42,4 +43,4 @@ class cell : public layer {
                           // backend, etc from the wrapper
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

@@ -10,7 +10,6 @@
 #include <algorithm>
 #include <string>
 #include <vector>
-
 #include "tinydnn/layers/layer.h"
 #include "tinydnn/utils/utils.h"
 
@@ -75,4 +74,4 @@ class elementwise_add_layer : public layer {
   size_t dim_;
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

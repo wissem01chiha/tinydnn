@@ -13,19 +13,19 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include "tinydnn/core/backend_tiny.h"
 
-#include "tiny_dnn/core/backend_tiny.h"
 #ifdef CNN_USE_AVX
-#include "tiny_dnn/core/backend_avx.h"
+#include "tinydnn/core/backend_avx.h"
 #endif  // CNN_USE_AVX
 
-#include "tiny_dnn/util/util.h"
+#include "tinydnn/utils/utils.h"
 
 #ifdef DNN_USE_IMAGE_API
-#include "tiny_dnn/util/image.h"
+#include "tinydnn/utils/image.h"
 #endif  // DNN_USE_IMAGE_API
 
-namespace tiny_dnn {
+namespace tinydnn {
 
 /**
  * 2D deconvolution layer
@@ -497,4 +497,4 @@ class deconvolutional_layer : public layer {
   core::deconv_layer_worker_specific_storage deconv_layer_worker_storage_;
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

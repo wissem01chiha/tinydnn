@@ -11,6 +11,7 @@
 #include <array>
 #include <cstdint>
 #include <fstream>
+#include <type_traits>
 #include <string>
 #include <vector>
 #include "tinydnn/utils/utils.h"
@@ -34,6 +35,7 @@
 #define STB_IMAGE_WRITE_STATIC
 #define STB_IMAGE_WRITE_INLINE
 #include "thirdparty/stb/stb_image_write.h"
+
 
 namespace tinydnn {
 
