@@ -10,7 +10,9 @@
 #include <algorithm>
 #include <deque>
 #include <vector>
-#include "tinydnn/core/params/params.h"
+#include "tinydnn/core/params.h"
+#include "tinydnn/utils/types.h"
+#include "tinydnn/utils/parallel_for.h"
 
 namespace tinydnn {
 namespace core {

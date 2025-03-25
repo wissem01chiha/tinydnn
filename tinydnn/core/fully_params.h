@@ -7,7 +7,7 @@
 */
 #pragma once
 
-#include "tinydnn/core/params/params.h"
+#include "tinydnn/core/params.h"
 #include <new>
 
 namespace tinydnn {

@@ -8,7 +8,6 @@
 #pragma once
 
 namespace tinydnn {
-  
 namespace core {
 
 class conv_params;

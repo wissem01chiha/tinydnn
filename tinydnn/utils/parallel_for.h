@@ -16,9 +16,9 @@
 #include <vector>
 #include "tinydnn/config.h"
 #include "tinydnn/utils/aligned_allocator.h"
-#include "tinydnn/utils/nn_error.h"
+#include "tinydnn/utils/logging.h"
 
-#ifdef CNN_USE_TBB
+#ifdef USE_TBB
 #ifndef NOMINMAX
 #define NOMINMAX  // tbb includes windows.h in tbb/machine/windows_api.h
 #endif
@@ -26,18 +26,18 @@
 #include <tbb/tbb.h>
 #endif
 
-#if !defined(CNN_USE_OMP) && !defined(CNN_SINGLE_THREAD)
+#if !defined(USE_OMP) && !defined(SINGLE_THREAD)
 #include <future>  // NOLINT
 #include <thread>  // NOLINT
 #endif
 
-#if defined(CNN_USE_GCD) && !defined(CNN_SINGLE_THREAD)
+#if defined(USE_GCD) && !defined(SINGLE_THREAD)
 #include <dispatch/dispatch.h>
 #endif
 
 namespace tinydnn {
 
-#ifdef CNN_USE_TBB
+#ifdef USE_TBB
 
 static tbb::task_scheduler_init tbbScheduler(
   tbb::task_scheduler_init::automatic);  // tbb::task_scheduler_init::deferred);
@@ -78,7 +78,7 @@ void xparallel_for(size_t begin, size_t end, const Func &f) {
   f(r);
 }
 
-#if defined(CNN_USE_OMP)
+#if defined(USE_OMP)
 
 template <typename Func>
 void parallel_for(size_t begin,
@@ -92,7 +92,7 @@ void parallel_for(size_t begin,
     f(blocked_range(i, i + 1));
 }
 
-#elif defined(CNN_USE_GCD)
+#elif defined(USE_GCD)
 
 template <typename Func>
 void parallel_for(size_t begin, size_t end, const Func &f, size_t grainsize) {
@@ -118,7 +118,7 @@ void parallel_for(size_t begin, size_t end, const Func &f, size_t grainsize) {
                  });
 }
 
-#elif defined(CNN_SINGLE_THREAD)
+#elif defined(SINGLE_THREAD)
 
 template <typename Func>
 void parallel_for(size_t begin,
@@ -163,7 +163,7 @@ void parallel_for(size_t begin,
 
 #endif
 
-#endif  // CNN_USE_TBB
+#endif  // USE_TBB
 
 template <typename T, typename U>
 bool value_representation(U const &value) {
@@ -181,14 +181,14 @@ inline void for_(
 
 template <typename T, typename Func>
 inline void for_i(bool parallelize, T size, Func f, size_t grainsize = 100u) {
-#ifdef CNN_SINGLE_THREAD
+#ifdef SINGLE_THREAD
   for (size_t i = 0; i < size; ++i) {
     f(i);
   }
-#else  // #ifdef CNN_SINGLE_THREAD
+#else  // #ifdef SINGLE_THREAD
   for_(parallelize, 0u, size,
        [&](const blocked_range &r) {
-#ifdef CNN_USE_OMP
+#ifdef USE_OMP
 #pragma omp parallel for
          for (int i = static_cast<int>(r.begin());
               i < static_cast<int>(r.end()); i++) {
@@ -201,7 +201,7 @@ inline void for_i(bool parallelize, T size, Func f, size_t grainsize = 100u) {
 #endif
        },
        grainsize);
-#endif  // #ifdef CNN_SINGLE_THREAD
+#endif  // #ifdef SINGLE_THREAD
 }
 
 template <typename T, typename Func>

@@ -7,9 +7,9 @@
 */
 #pragma once
 
-#include "tiny_dnn/layers/layers.h"
+#include "tinydnn/layers/layers.h"
 
-namespace tiny_dnn {
+namespace tinydnn {
 
 template <typename T>
 void register_layers(T* h) {
@@ -55,4 +55,4 @@ void register_layers(T* h) {
   h->template register_layer<selu_layer>("selu");
 }
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

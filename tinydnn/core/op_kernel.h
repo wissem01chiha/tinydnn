@@ -10,8 +10,8 @@
 #include <memory>
 #include <string>
 #include <vector>
-#include "tinydnn/core/framework/device.fwd.h"
-#include "tinydnn/core/params/conv_params.h"
+#include "tinydnn/core/device.fwd.h"
+#include "tinydnn/core/conv_params.h"
 
 namespace tinydnn {
 namespace core {

@@ -9,7 +9,8 @@
 
 #include <algorithm>
 #include <unordered_map>
-#include "tinydnn/utils/utils.h"
+#include "tinydnn/utils/types.h"
+#include "tinydnn/utils/parallel_for.h"
 
 namespace tinydnn {
 

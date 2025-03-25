@@ -10,10 +10,9 @@
 #include <algorithm>
 #include <limits>
 #include <vector>
-#include "tiny_dnn/layers/layer.h"
-#include "tiny_dnn/util/util.h"
+#include "tinydnn/layers/layer.h"
 
-namespace tiny_dnn {
+namespace tinydnn {
 
 /**
  * Auxiliar function to convert a vector of tensors to a vector of tensor
@@ -125,4 +124,4 @@ float_t relative_error(const float_t analytical_grad,
   return (max == 0) ? 0.0 : std::abs(analytical_grad - numeric_grad) / max;
 }
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

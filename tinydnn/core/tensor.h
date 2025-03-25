@@ -10,8 +10,7 @@
 #include <memory>
 #include <type_traits>
 #include <vector>
-
-#include "tinydnn/core/framework/device.fwd.h"
+#include "tinydnn/core/device.fwd.h"
 
 #if defined(USE_OPENCL) || defined(USE_CUDA)
 #ifdef USE_OPENCL

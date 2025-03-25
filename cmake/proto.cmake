@@ -14,12 +14,10 @@
 find_package(Protobuf QUIET)
 
 if(PROTOBUF_FOUND)
-    set(proto_file "${CMAKE_SOURCE_DIR}/tiny_dnn/io/caffe/caffe.pb.cc")
+    set(proto_file "${CMAKE_SOURCE_DIR}/tinydnn/io/caffe/caffe.pb.cc")
     if(EXISTS ${proto_file})
         message(STATUS "Found proto-file: ${proto_file}")
         set (PROTO_CPP_AVAILABLE "YES")
-# As of Ubuntu 14.04 protoc is no longer a part of libprotobuf-dev package
-# and should be installed separately as in: sudo apt-get install protobuf-compiler
     elseif(EXISTS ${PROTOBUF_PROTOC_EXECUTABLE})
         message(STATUS "Found PROTOBUF Compiler: ${PROTOBUF_PROTOC_EXECUTABLE}")
         if(EXISTS ${CMAKE_SOURCE_DIR}/tiny_dnn/io/caffe/caffe.proto)

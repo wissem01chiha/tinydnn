@@ -7,7 +7,9 @@
 */
 #pragma once
 
-#include "tinydnn/utils/utils.h"
+#include "tinydnn/utils/types.h"
+#include "tinydnn/utils/random.h"
+#include "tinydnn/utils/product.h"
 
 namespace tinydnn {
 namespace weight_init {
@@ -59,7 +61,7 @@ class lecun : public scalable {
   explicit lecun(float_t value) : scalable(value) {}
 
   void fill(vec_t *weight, size_t fan_in, size_t fan_out) override {
-    CNN_UNREFERENCED_PARAMETER(fan_out);
+    UNREFERENCED_PARAMETER(fan_out);
 
     const float_t weight_base = scale_ / std::sqrt(float_t(fan_in));
 
@@ -73,8 +75,8 @@ class gaussian : public scalable {
   explicit gaussian(float_t sigma) : scalable(sigma) {}
 
   void fill(vec_t *weight, size_t fan_in, size_t fan_out) override {
-    CNN_UNREFERENCED_PARAMETER(fan_in);
-    CNN_UNREFERENCED_PARAMETER(fan_out);
+    UNREFERENCED_PARAMETER(fan_in);
+    UNREFERENCED_PARAMETER(fan_out);
 
     gaussian_rand(weight->begin(), weight->end(), float_t{0}, scale_);
   }
@@ -86,8 +88,8 @@ class constant : public scalable {
   explicit constant(float_t value) : scalable(value) {}
 
   void fill(vec_t *weight, size_t fan_in, size_t fan_out) override {
-    CNN_UNREFERENCED_PARAMETER(fan_in);
-    CNN_UNREFERENCED_PARAMETER(fan_out);
+    UNREFERENCED_PARAMETER(fan_in);
+    UNREFERENCED_PARAMETER(fan_out);
 
     vectorize::fill(&(*weight)[0], weight->size(), scale_);
   }
@@ -99,7 +101,7 @@ class he : public scalable {
   explicit he(float_t value) : scalable(value) {}
 
   void fill(vec_t *weight, size_t fan_in, size_t fan_out) override {
-    CNN_UNREFERENCED_PARAMETER(fan_out);
+    UNREFERENCED_PARAMETER(fan_out);
 
     const float_t sigma = std::sqrt(scale_ / fan_in);
 

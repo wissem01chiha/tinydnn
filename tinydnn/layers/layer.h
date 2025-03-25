@@ -19,7 +19,7 @@
 #include <utility>
 #include <vector>
 #include "tinydnn/backend/backend.h"
-#include "tinydnn/core/framework/device.fwd.h"
+#include "tinydnn/core/device.fwd.h"
 #include "tinydnn/node.h"
 #include "tinydnn/utils/parallel_for.h"
 #include "tinydnn/utils/product.h"

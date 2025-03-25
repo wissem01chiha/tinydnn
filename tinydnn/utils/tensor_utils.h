@@ -7,14 +7,13 @@
 */
 #pragma once
 
-#include <algorithm>  // std::fill, std::generate
-#include <cmath>      // sqrt
+#include <algorithm>  
+#include <cmath>      
 #include <functional>
 #include <limits>
-#include <numeric>  // std::accumulate
-
+#include <numeric>  
 #include "thirdparty/xtensor/xio.hpp"
-#include "tinydnn/core/framework/tensor.h"
+#include "tinydnn/core/tensor.h"
 
 namespace tinydnn {
 
@@ -113,8 +112,6 @@ void binary_scalar_tensor_operation(Tensor<TD, TDS> &dst,
     *std::next(pdst, i) = f(src1, *std::next(psrc2, i));
   });
 }
-
-// implementation of
 
 namespace details {
 

@@ -8,7 +8,7 @@
 #pragma once
 
 #include <string>
-#include "tinydnn/core/framework/device.fwd.h"
+#include "tinydnn/core/device.fwd.h"
 #include "tinydnn/layers/layer.h"
 
 #if defined(USE_OPENCL) || defined(USE_CUDA)

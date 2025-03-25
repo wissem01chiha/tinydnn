@@ -11,7 +11,7 @@
 #include <random>
 #include <type_traits>
 #include "tinydnn/config.h"
-#include "tinydnn/utils/nn_error.h"
+#include "tinydnn/utils/logging.h"
 
 namespace tinydnn {
 
@@ -27,8 +27,6 @@ class random_generator {
   void set_seed(unsigned int seed) { gen_.seed(seed); }
 
  private:
-  // avoid gen_(0) for MSVC known issue
-  // https://connect.microsoft.com/VisualStudio/feedback/details/776456
   random_generator() : gen_(1) {}
   std::mt19937 gen_;
 };

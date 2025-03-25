@@ -9,8 +9,8 @@
 
 #include <unordered_map>
 #include "tinydnn/layers/layer.h"
-#include "tinydnn/core/framework/device.fwd.h"
-#include "tinydnn/core/framework/program.h"
+#include "tinydnn/core/device.fwd.h"
+#include "tinydnn/core/program.h"
 
 #if defined(USE_OPENCL) || defined(USE_CUDA)
 #ifdef USE_OPENCL

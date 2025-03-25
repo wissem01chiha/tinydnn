@@ -12,9 +12,9 @@
 
 #if defined(USE_OPENCL) || defined(USE_CUDA)
   #ifdef USE_OPENCL
-    #include "third_party/CLCudaAPI/clpp11.h"
+    #include "thirdparty/CLCudaAPI/clpp11.h"
   #else
-    #include "third_party/CLCudaAPI/cupp11.h"
+    #include "thirdparty/CLCudaAPI/cupp11.h"
   #endif
 #endif
 

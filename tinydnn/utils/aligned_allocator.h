@@ -19,9 +19,9 @@
 #include <mm_malloc.h>
 #endif
 
-#include "tinydnn/utils/nn_error.h"
+#include "tinydnn/utils/logging.h"
 
-namespace tiny_dnn {
+namespace tinydnn {
 
 template <typename T, std::size_t alignment>
 class aligned_allocator {
@@ -125,4 +125,4 @@ inline bool operator!=(const aligned_allocator<T1, alignment> &,
   return false;
 }
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

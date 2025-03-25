@@ -12,17 +12,15 @@
 #include <memory>
 #include <string>
 #include <typeindex>
-
 #include <cereal/archives/json.hpp>
 #include <cereal/types/memory.hpp>
+#include "tinydnn/layers/layers.h"
+#include "tinydnn/utils/macro.h"
+#include "tinydnn/utils/nn_error.h"
+#include "tinydnn/utils/serialization_functions.h"
+#include "tinydnn/utils/serialization_layer_list.h"
 
-#include "tiny_dnn/layers/layers.h"
-#include "tiny_dnn/util/macro.h"
-#include "tiny_dnn/util/nn_error.h"
-#include "tiny_dnn/util/serialization_functions.h"
-#include "tiny_dnn/util/serialization_layer_list.h"
-
-namespace tiny_dnn {
+namespace tinydnn {
 
 template <typename OutputArchive>
 class serialization_helper {
@@ -122,4 +120,4 @@ void layer::serialize_prolog(Archive &ar) {
   ar(cereal::make_nvp("type", name));
 }
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

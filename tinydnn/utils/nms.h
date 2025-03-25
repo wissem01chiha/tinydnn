@@ -1,15 +1,28 @@
-/*
-  Copyright (c) 2013, Taiga Nomi and the respective contributors
-  All rights reserved.
 
-  Use of this source code is governed by a BSD-style license that can be found
-  in the LICENSE file.
-*/
 #pragma once
 
 #include <vector>
+#include "tinydnn/utils/types.h"
+#include <algorithm>
 
 namespace tinydnn {
+
+// ---------- Forward Declarations --------------------
+
+// Represents a bounding box with coordinates and a score
+struct bounding_box;
+
+// Calculates the area of the bounding box
+inline float_t bounding_box_area(const bounding_box &bbox);
+
+// Computes Intersection-over-Union (IoU) between two bounding boxes
+inline float_t iou(const bounding_box &b1, const bounding_box &b2);
+
+// Performs Non-Maximum Suppression (NMS) on a set of bounding box proposals
+inline std::vector<int> nms(std::vector<bounding_box> &proposals,
+                            const float_t threshold);
+
+// ---------- Implementations --------------------
 
 struct bounding_box {
   float_t x_min;
@@ -34,7 +47,7 @@ inline float_t iou(const bounding_box &b1, const bounding_box &b2) {
 }
 
 inline std::vector<int> nms(std::vector<bounding_box> &proposals,
-                     const float_t threshold) {
+                            const float_t threshold) {
   std::vector<float_t> scores;
   std::vector<int> indexes;
   for (size_t i = 0; i < proposals.size(); ++i) {

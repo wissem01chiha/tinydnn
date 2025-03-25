@@ -1,5 +1,5 @@
-#ifndef TINYDNN_CONFIG_HPP_
-#define TINYDNN_CONFIG_HPP_
+#ifndef TINYDNN_CONFIG_H_
+#define TINYDNN_CONFIG_H_
 
 /* Define if you want to use intel TBB library */
 #cmakedefine CNN_USE_TBB
@@ -16,4 +16,4 @@
 /* Define to enable avx vectorization */
 #cmakedefine CNN_USE_AVX
 
-#endif  // TINYDNN_CONFIG_HPP_
+#endif  // TINYDNN_CONFIG_H_

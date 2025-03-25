@@ -7,8 +7,8 @@
 */
 #pragma once
 
-#include "tinydnn/core/framework/device.fwd.h"
-#include "tinydnn/core/framework/program_manager.h"
+#include "tinydnn/core/device.fwd.h"
+#include "tinydnn/core/program_manager.h"
 
 namespace tinydnn {
 

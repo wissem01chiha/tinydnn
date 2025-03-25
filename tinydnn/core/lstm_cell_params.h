@@ -10,7 +10,7 @@
 #include <memory>
 #include "tinydnn/activation/sigmoid_layer.h"
 #include "tinydnn/activation/tanh_layer.h"
-#include "tinydnn/core/params/params.h"
+#include "tinydnn/core/params.h"
 
 namespace tinydnn {
 namespace core {

@@ -7,12 +7,12 @@
 */
 #pragma once
 
-#include <numeric>  // std::accumulate
+#include <numeric>  
 #include <vector>
+#include "tinydnn/utils/types.h"
+#include "tinydnn/utils/product.h"
 
-#include "tiny_dnn/util/util.h"
-
-namespace tiny_dnn {
+namespace tinydnn {
 
 // calculate the number of samples for each class label
 //  - for example, if there are 10 samples having label 0, and
@@ -79,4 +79,4 @@ inline std::vector<vec_t> create_balanced_target_cost(
   return target_cost;
 }
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

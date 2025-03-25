@@ -8,14 +8,14 @@
 #pragma once
 
 #include <vector>
-#include "tinydnn/core/params/conv_params.h"
-#include "tinydnn/core/params/deconv_params.h"
-#include "tinydnn/core/params/fully_params.h"
-#include "tinydnn/core/params/global_avepool_params.h"
-#include "tinydnn/core/params/maxpool_params.h"
+#include "tinydnn/core/conv_params.h"
+#include "tinydnn/core/deconv_params.h"
+#include "tinydnn/core/fully_params.h"
+#include "tinydnn/core/global_avepool_params.h"
+#include "tinydnn/core/maxpool_params.h"
 #include "tinydnn/node.h"
 
-#ifdef CNN_USE_NNPACK
+#ifdef USE_NNPACK
 #include <nnpack.h>
 #endif
 
@@ -53,7 +53,7 @@ inline backend_t default_engine() {
 #endif
 }
 
-#ifdef CNN_USE_NNPACK
+#ifdef USE_NNPACK
 // Singleton to keep a global state whether NNPACK is initialized.
 // Before using the API an initialization is required. For this reason
 // we need to get an instance of the object in order to avoid a throw error.
