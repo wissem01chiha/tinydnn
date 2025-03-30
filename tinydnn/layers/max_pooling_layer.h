@@ -12,17 +12,13 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include "tinydnn/backend/kernels/maxpool_grad_op.h"
+#include "tinydnn/backend/kernels/maxpool_op.h"
+#include "tinydnn/utils/utils.h"
+#include "tinydnn/image/image.h"
+ 
 
-#include "tiny_dnn/core/kernels/maxpool_grad_op.h"
-#include "tiny_dnn/core/kernels/maxpool_op.h"
-
-#include "tiny_dnn/util/util.h"
-
-#ifdef DNN_USE_IMAGE_API
-#include "tiny_dnn/util/image.h"
-#endif
-
-namespace tiny_dnn {
+namespace tinydnn {
 
 /**
  * applies max-pooling operaton to the spatial data
@@ -268,4 +264,4 @@ class max_pooling_layer : public layer {
   }
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

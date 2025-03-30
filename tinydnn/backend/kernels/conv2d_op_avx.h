@@ -8,17 +8,17 @@
 #pragma once
 
 #include <vector>
-#include "tiny_dnn/core/kernels/conv2d_op_internal.h"
-#include "tiny_dnn/core/params/conv_params.h"
+#include "tinydnn/backend/kernels/conv2d_op_internal.h"
+#include "tinydnn/core/conv_params.h"
 
-#ifdef CNN_USE_AVX
-#include "tiny_dnn/core/kernels/avx_kernel_common.h"
+#ifdef USE_AVX
+#include "tinydnn/backend/kernels/avx_kernel_common.h"
 #endif
 
-namespace tiny_dnn {
+namespace tinydnn {
 namespace kernels {
 
-#ifdef CNN_USE_AVX
+#ifdef USE_AVX
 
 // float ver
 template <typename Allocator>
@@ -446,7 +446,7 @@ void avx_conv2d_5x5_kernel(const core::conv_params &params,
   }          // else
 }  // avx_conv2d_5x5_kernel double ver
 
-#endif  // CNN_USE_AVX
+#endif  // USE_AVX
 
 inline void conv2d_op_avx(const tensor_t &in_data,
                           const vec_t &W,
@@ -454,7 +454,7 @@ inline void conv2d_op_avx(const tensor_t &in_data,
                           tensor_t &out_data,
                           const core::conv_params &params,
                           const bool layer_parallelize) {
-#ifdef CNN_USE_AVX
+#ifdef USE_AVX
   if (params.weight.height_ == 5 && params.weight.width_ == 5) {
     // @todo consider better parallelization
     for_i(layer_parallelize, in_data.size(), [&](size_t i) {
@@ -468,4 +468,4 @@ inline void conv2d_op_avx(const tensor_t &in_data,
 }
 
 }  // namespace kernels
-}  // namespace tiny_dnn
+}  // namespace tinydnn

@@ -9,7 +9,8 @@
 
 #include <vector>
 #include "tinydnn/backend/backend.h"
-#include "tinydnn/core/framework/device.fwd.h"
+#include "tinydnn/core/device.fwd.h"
+#include "tinydnn/layers/layer.h"
 
 namespace tinydnn {
 
@@ -32,7 +33,7 @@ class cell : public layer {
                                 std::vector<tensor_t *> &out_grad,
                                 std::vector<tensor_t *> &in_grad) = 0;
 
-  virtual core::backend_t backend_type() const { return wrapper_->engine(); }
+  virtual backend_t backend_type() const { return wrapper_->engine(); }
 
   virtual void init_backend(const layer *wrapper) = 0;
 

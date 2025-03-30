@@ -8,19 +8,17 @@
 #pragma once
 
 #include <vector>
-#include "tinydnn/core/kernels/conv2d_op_internal.h"
-#include "tinydnn/core/params/conv_params.h"
-
-#ifdef CNN_USE_AVX
-#include "tinydnn/core/kernels/avx_kernel_common.h"
+#include "tinydnn/backend/kernels/conv2d_op_internal.h"
+#include "tinydnn/core/conv_params.h"
+#ifdef USE_AVX
+#include "tinydnn/backend/kernels/avx_kernel_common.h"
 #endif
 
 namespace tinydnn {
 namespace kernels {
 
-#ifdef CNN_USE_AVX
+#ifdef USE_AVX
 
-// float ver
 template <typename Allocator>
 inline void accumulate_db(const index3d<size_t> &out,
                           const std::vector<float, Allocator> &curr_delta,
@@ -875,7 +873,7 @@ void avx_conv2d_5x5_back_kernel(
   });
 }
 
-#endif  // CNN_USE_AVX
+#endif  // USE_AVX
 
 inline void conv2d_grad_op_avx(const tensor_t &prev_out,
                                const vec_t &W,
@@ -885,7 +883,7 @@ inline void conv2d_grad_op_avx(const tensor_t &prev_out,
                                tensor_t &prev_delta,
                                const core::conv_params &params,
                                const bool layer_parallelize) {
-#ifdef CNN_USE_AVX
+#ifdef USE_AVX
   if (params.weight.height_ == 5 && params.weight.width_ == 5) {
     avx_conv2d_5x5_back_kernel(params, prev_out, W, dW, db, curr_delta,
                                prev_delta, layer_parallelize);

@@ -7,9 +7,10 @@
 */
 #pragma once
 
-#include "tiny_dnn/core/params/deconv_params.h"
+#include "tinydnn/core/deconv_params.h"
+#include "tinydnn/utils/utils.h"
 
-namespace tiny_dnn {
+namespace tinydnn {
 namespace core {
 namespace kernels {
 

@@ -10,11 +10,10 @@
 #include <algorithm>
 #include <string>
 #include <vector>
+#include "tinydnn/layers/layer.h"
+#include "tinydnn/utils/utils.h"
 
-#include "tiny_dnn/layers/layer.h"
-#include "tiny_dnn/util/util.h"
-
-namespace tiny_dnn {
+namespace tinydnn {
 
 /**
  * concat N layers along depth
@@ -84,8 +83,8 @@ class concat_layer : public layer {
                         const std::vector<tensor_t *> &out_data,
                         std::vector<tensor_t *> &out_grad,
                         std::vector<tensor_t *> &in_grad) override {
-    CNN_UNREFERENCED_PARAMETER(in_data);
-    CNN_UNREFERENCED_PARAMETER(out_data);
+    UNREFERENCED_PARAMETER(in_data);
+    UNREFERENCED_PARAMETER(out_data);
 
     size_t num_samples = (*out_grad[0]).size();
 
@@ -108,4 +107,4 @@ class concat_layer : public layer {
   shape3d out_shape_;
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

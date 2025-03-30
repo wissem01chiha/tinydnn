@@ -14,6 +14,6 @@ namespace tinydnn  {
 class gish_layer : public activation_layer {
 
   explicit gish_layer ();
-}
+};
 
 }

@@ -7,11 +7,11 @@
 */
 #pragma once
 
-#include "tiny_dnn/core/framework/op_kernel.h"
-#include "tiny_dnn/core/kernels/conv2d_grad_op_avx.h"
-#include "tiny_dnn/core/kernels/conv2d_op_internal.h"
+#include "tinydnn/core/op_kernel.h"
+#include "tinydnn/backend/kernels/conv2d_grad_op_avx.h"
+#include "tinydnn/backend/kernels/conv2d_op_internal.h"
 
-namespace tiny_dnn {
+namespace tinydnn {
 
 class Conv2dGradOp : public core::OpKernel {
  public:
@@ -49,4 +49,4 @@ class Conv2dGradOp : public core::OpKernel {
   }
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

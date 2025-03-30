@@ -12,8 +12,8 @@
 #include <utility>
 #include <vector>
 #include "tinydnn/layers/layer.h"
-#include "tinydnn/core/kernels/fully_connected_grad_op.h"
-#include "tinydnn/core/kernels/fully_connected_op.h"
+#include "tinydnn/backend/kernels/fully_connected_grad_op.h"
+#include "tinydnn/backend/kernels/fully_connected_op.h"
 
 namespace tinydnn {
 

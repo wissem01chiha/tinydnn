@@ -7,13 +7,12 @@
 */
 #pragma once
 
-#include "tiny_dnn/core/framework/op_kernel.h"
+#include "tinydnn/core/op_kernel.h"
+#include "tinydnn/backend/kernels/maxpool_op_avx.h"
+#include "tinydnn/backend/kernels/maxpool_op_internal.h"
+#include "tinydnn/backend/kernels/maxpool_op_nnpack.h"
 
-#include "tiny_dnn/core/kernels/maxpool_op_avx.h"
-#include "tiny_dnn/core/kernels/maxpool_op_internal.h"
-#include "tiny_dnn/core/kernels/maxpool_op_nnpack.h"
-
-namespace tiny_dnn {
+namespace tinydnn {
 
 class MaxPoolOp : public core::OpKernel {
  public:
@@ -61,4 +60,4 @@ class MaxPoolOp : public core::OpKernel {
   }
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

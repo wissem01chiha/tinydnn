@@ -20,21 +20,19 @@
 #endif
 
 namespace tinydnn {
-namespace core {
 
-// TODO(edgar): remove this
 class context;
 
 enum class backend_t { internal, nnpack, libdnn, avx, opencl, cblas, intel_mkl };
 
 inline std::ostream &operator<<(std::ostream &os, backend_t type) {
   switch (type) {
-    case backend_t::internal: os << "Internal"; break;
-    case backend_t::nnpack: os << "NNPACK"; break;
-    case backend_t::libdnn: os << "LibDNN"; break;
-    case backend_t::avx: os << "AVX"; break;
-    case backend_t::opencl: os << "OpenCL"; break;
-    case backend_t::cblas: os << "CBLAS"; break;
+    case backend_t::internal: os  << "Internal"; break;
+    case backend_t::nnpack: os    << "NNPACK"; break;
+    case backend_t::libdnn: os    << "LibDNN"; break;
+    case backend_t::avx: os       << "AVX"; break;
+    case backend_t::opencl: os    << "OpenCL"; break;
+    case backend_t::cblas: os     << "CBLAS"; break;
     case backend_t::intel_mkl: os << "Intel MKL"; break;
     default: throw nn_error("Not supported ostream enum."); break;
   }
@@ -42,7 +40,7 @@ inline std::ostream &operator<<(std::ostream &os, backend_t type) {
 }
 
 inline backend_t default_engine() {
-#ifdef CNN_USE_AVX
+#ifdef USE_AVX
 #if defined(__AVX__) || defined(__AVX2__)
   return backend_t::avx;
 #else
@@ -111,10 +109,8 @@ class backend {
   // context holds solution-dependent parameters
   // context should be able to hold any types of structures (like boost::any)
   explicit backend(context *ctx_ = nullptr) {
-    CNN_UNREFERENCED_PARAMETER(ctx_);
+    UNREFERENCED_PARAMETER(ctx_);
   }
-
-  // core math functions
 
   virtual void conv2d_q(const std::vector<tensor_t *> &in_data,
                         std::vector<tensor_t *> &out_data) = 0;
@@ -168,5 +164,4 @@ class backend {
   layer *layer_;
 };
 
-}  // namespace core
 }  // namespace tinydnn

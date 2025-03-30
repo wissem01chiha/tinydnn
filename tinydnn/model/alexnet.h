@@ -1,26 +1,27 @@
 /*
-    Copyright (c) 2013, Taiga Nomi and the respective contributors
-    All rights reserved.
+  Copyright (c) 2013, Taiga Nomi and the respective contributors
+  All rights reserved.
 
-    Use of this source code is governed by a BSD-style license that can be found
-    in the LICENSE file.
+  Use of this source code is governed by a BSD-style license that can be found
+  in the LICENSE file.
 */
+
 #pragma once
 
 #include <string>
+#include "tinydnn/activation/activation.h"
+#include "tinydnn/layers/layers.h"
+#include "tinydnn/network.h"
 
-namespace models {
+namespace tinydnn {
 
-// Based on:
-// https://github.com/DeepMark/deepmark/blob/master/torch/image%2Bvideo/alexnet.lua
-class alexnet : public tiny_dnn::network<tiny_dnn::sequential> {
+class alexnet : public tinydnn::network<tinydnn::sequential> {
  public:
   explicit alexnet(const std::string &name = "")
-    : tiny_dnn::network<tiny_dnn::sequential>(name) {
-    // todo: (karandesai) shift this to tiny_dnn::activation
-    using relu     = tiny_dnn::activation::relu;
-    using conv     = tiny_dnn::layers::conv;
-    using max_pool = tiny_dnn::layers::max_pool;
+    : tinydnn::network<tinydnn::sequential>(name) {
+    using relu     = tinydnn::relu_layer;
+    using conv     = tinydnn::convolutional_layer;
+    using max_pool = tinydnn::max_pool;
     *this << conv(224, 224, 11, 11, 3, 64, padding::valid, true, 4, 4);
     *this << relu(54, 54, 64);
     *this << max_pool(54, 54, 64, 2);
@@ -37,4 +38,4 @@ class alexnet : public tiny_dnn::network<tiny_dnn::sequential> {
   }
 };
 
-}  // namespace models
+}  // namespace tinydnn

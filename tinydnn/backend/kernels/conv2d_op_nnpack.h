@@ -7,8 +7,8 @@
 */
 #pragma once
 
-#include "tinydnn/core/backend.h"
-#include "tinydnn/core/params/conv_params.h"
+#include "tinydnn/backend/backend.h"
+#include "tinydnn/core/conv_params.h"
 
 namespace tinydnn {
 namespace kernels {
@@ -18,7 +18,7 @@ inline void conv2d_op_nnpack(const tensor_t &in_data,
                              const vec_t &bias,
                              tensor_t &out_data,
                              const core::conv_params &params) {
-#ifdef CNN_USE_NNPACK
+#ifdef USE_NNPACK
   // call singleton to initialize NNPACK
   core::NNPackInitializer::getInstance().initialize();
 
@@ -74,11 +74,11 @@ inline void conv2d_op_nnpack(const tensor_t &in_data,
   // TODO(edgarriba): embed it into a class
   pthreadpool_destroy(threadpool);
 #else
-  CNN_UNREFERENCED_PARAMETER(in_data);
-  CNN_UNREFERENCED_PARAMETER(W);
-  CNN_UNREFERENCED_PARAMETER(bias);
-  CNN_UNREFERENCED_PARAMETER(out_data);
-  CNN_UNREFERENCED_PARAMETER(params);
+  UNREFERENCED_PARAMETER(in_data);
+  UNREFERENCED_PARAMETER(W);
+  UNREFERENCED_PARAMETER(bias);
+  UNREFERENCED_PARAMETER(out_data);
+  UNREFERENCED_PARAMETER(params);
   throw nn_error("TinyDNN has not been compiled with NNPACK support.");
 #endif
 }

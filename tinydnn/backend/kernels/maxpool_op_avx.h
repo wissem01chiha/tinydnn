@@ -8,10 +8,10 @@
 #pragma once
 
 #include <vector>
+#include "tinydnn/utils/types.h"
+#include "tinydnn/backend/kernels/maxpool_op_internal.h"
 
-#include "tiny_dnn/core/kernels/maxpool_op_internal.h"
-
-namespace tiny_dnn {
+namespace tinydnn {
 namespace kernels {
 
 inline void maxpool_op_avx(const tensor_t &in_data,

@@ -7,10 +7,10 @@
 */
 #pragma once
 
-#include "tiny_dnn/core/framework/op_kernel.h"
-#include "tiny_dnn/core/kernels/gru_cell_op_internal.h"
+#include "tinydnn/core/op_kernel.h"
+#include "tinydnn/backend/kernels/gru_cell_op_internal.h"
 
-namespace tiny_dnn {
+namespace tinydnn {
 
 class GRUCellOp : public core::OpKernel {
  public:
@@ -52,9 +52,9 @@ class GRUCellOp : public core::OpKernel {
 
     // call the algorithm depending  on the selected engine type
 
-    const core::backend_t engine = context.engine();
+    const backend_t engine = context.engine();
 
-    if (engine == core::backend_t::internal || engine == core::backend_t::avx) {
+    if (engine == backend_t::internal || engine == backend_t::avx) {
       kernels::gru_cell_op_internal(
         x, h_prev, W_x2z[0], W_x2r[0], W_x2h[0], W_hr2c[0], W_s2z[0], W_s2r[0],
         params.has_bias_ ? (*b_2z)[0] : vec_t(),

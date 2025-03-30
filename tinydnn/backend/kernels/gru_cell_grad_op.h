@@ -7,8 +7,8 @@
 */
 #pragma once
 
-#include "tinydnn/core/framework/op_kernel.h"
-#include "tinydnn/core/kernels/gru_cell_op_internal.h"
+#include "tinydnn/core/op_kernel.h"
+#include "tinydnn/backend/kernels/gru_cell_op_internal.h"
 
 namespace tinydnn {
 

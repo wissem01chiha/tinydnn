@@ -12,19 +12,15 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include "tinydnn/backend/kernels/conv2d_grad_op.h"
+#include "tinydnn/backend/kernels/conv2d_op.h"
+#include "tinydnn/backend/kernels/conv2d_op_libdnn.h"
+#include "tinydnn/backend/kernels/conv2d_op_opencl.h"
+#include "tinydnn/utils/utils.h"
+#include "tinydnn/image/image.h"
 
-#include "tiny_dnn/core/kernels/conv2d_grad_op.h"
-#include "tiny_dnn/core/kernels/conv2d_op.h"
-#include "tiny_dnn/core/kernels/conv2d_op_libdnn.h"
-#include "tiny_dnn/core/kernels/conv2d_op_opencl.h"
 
-#include "tiny_dnn/util/util.h"
-
-#ifdef DNN_USE_IMAGE_API
-#include "tiny_dnn/util/image.h"
-#endif  // DNN_USE_IMAGE_API
-
-namespace tiny_dnn {
+namespace tinydnn {
 
 /**
  * 2D convolution layer
@@ -558,4 +554,4 @@ class convolutional_layer : public layer {
   } cws_;
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

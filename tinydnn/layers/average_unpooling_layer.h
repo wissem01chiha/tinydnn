@@ -11,9 +11,8 @@
 #include <string>
 #include <vector>
 #include "tinydnn/layers/partial_connected_layer.h"
-#include "tinydnn/util/util.h"
-#include "tinydnn/utils/image.h"
-
+#include "tinydnn/utils/utils.h"
+#include "tinydnn/image/image.h"
 
 namespace tinydnn {
 
@@ -25,7 +24,7 @@ inline void tiny_average_unpooling_kernel(
   const shape3d &out_dim,
   float_t scale_factor,
   std::vector<typename partial_connected_layer::wi_connections> &out2wi) {
-  CNN_UNREFERENCED_PARAMETER(scale_factor);
+  UNREFERENCED_PARAMETER(scale_factor);
   for_i(parallelize, in_data[0]->size(), [&](size_t sample) {
     const vec_t &in = (*in_data[0])[sample];
     const vec_t &W  = (*in_data[1])[0];
@@ -63,8 +62,8 @@ inline void tiny_average_unpooling_back_kernel(
   std::vector<typename partial_connected_layer::io_connections> &weight2io,
   std::vector<typename partial_connected_layer::wo_connections> &in2wo,
   std::vector<std::vector<size_t>> &bias2out) {
-  CNN_UNREFERENCED_PARAMETER(out_data);
-  CNN_UNREFERENCED_PARAMETER(scale_factor);
+  UNREFERENCED_PARAMETER(out_data);
+  UNREFERENCED_PARAMETER(scale_factor);
   for_i(parallelize, in_data[0]->size(), [&](size_t sample) {
     const vec_t &prev_out = (*in_data[0])[sample];
     const vec_t &W        = (*in_data[1])[0];

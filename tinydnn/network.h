@@ -7,9 +7,6 @@
 */
 #pragma once
 
-#ifndef CNN_NO_SERIALIZATION
-  #include <fstream>
-#endif
 #include <algorithm>
 #include <iomanip>
 #include <iostream>
@@ -22,9 +19,13 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include "tinydnn/config.h"
 #include "tinydnn/loss/loss.h"
 #include "tinydnn/nodes.h"
 #include "tinydnn/utils/utils.h"
+#ifdef USE_SERIALIZATION
+  #include <fstream>
+#endif
 
 namespace tinydnn {
 

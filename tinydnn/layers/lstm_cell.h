@@ -8,10 +8,10 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "tinydnn/activations/sigmoid_layer.h"
-#include "tinydnn/activations/tanh_layer.h"
-#include "tinydnn/core/kernels/lstm_cell_grad_op.h"
-#include "tinydnn/core/kernels/lstm_cell_op.h"
+#include "tinydnn/activation/sigmoid_layer.h"
+#include "tinydnn/activation/tanh_layer.h"
+#include "tinydnn/backend/kernels/lstm_cell_grad_op.h"
+#include "tinydnn/backend/kernels/lstm_cell_op.h"
 #include "tinydnn/layers/cell.h"
 
 namespace tinydnn {

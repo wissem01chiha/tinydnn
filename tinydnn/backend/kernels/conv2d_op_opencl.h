@@ -9,10 +9,9 @@
 
 #include <algorithm>
 #include <vector>
+#include "tinydnn/core/op_kernel.h"
 
-#include "tiny_dnn/core/framework/op_kernel.h"
-
-namespace tiny_dnn {
+namespace tinydnn {
 
 class Conv2dOpenCLForwardOp : public core::OpKernel {
  public:
@@ -120,7 +119,7 @@ class Conv2dOpenCLForwardOp : public core::OpKernel {
                 std::back_inserter(out_data[i]));
     }
 #else
-    CNN_UNREFERENCED_PARAMETER(context);
+    UNREFERENCED_PARAMETER(context);
     throw nn_error("Not compiled with OpenCL");
 #endif
   }
@@ -132,9 +131,9 @@ class Conv2dOpenCLBackwardOp : public core::OpKernel {
     : core::OpKernel(context) {}
 
   void compute(core::OpKernelContext &context) override {
-    CNN_UNREFERENCED_PARAMETER(context);
+    UNREFERENCED_PARAMETER(context);
     nn_error("Not implemented yet.");
   }
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

@@ -10,10 +10,9 @@
 #include <algorithm>
 #include <memory>
 #include <vector>
+#include "tinydnn/core/op_kernel.h"
 
-#include "tinydnn/core/framework/op_kernel.h"
-
-#ifdef CNN_USE_LIBDNN
+#ifdef USE_LIBDNN
 #include "libdnn.hpp"
 #endif
 
@@ -23,7 +22,7 @@ class Conv2dLibDNNForwardOp : public core::OpKernel {
  public:
   explicit Conv2dLibDNNForwardOp(const core::OpKernelConstruction &context)
     : core::OpKernel(context)
-#ifdef CNN_USE_LIBDNN
+#ifdef USE_LIBDNN
       ,
       initialized_(false)
 #endif
@@ -37,7 +36,7 @@ class Conv2dLibDNNForwardOp : public core::OpKernel {
   }
 
   void compute(core::OpKernelContext &context) override {
-#ifdef CNN_USE_LIBDNN
+#ifdef USE_LIBDNN
     // incoming/outcoming datm
     const tensor_t &in_data = context.input(0);
     const tensor_t &W       = context.input(1);
@@ -142,13 +141,13 @@ class Conv2dLibDNNForwardOp : public core::OpKernel {
     }
 
 #else
-    CNN_UNREFERENCED_PARAMETER(context);
+    UNREFERENCED_PARAMETER(context);
     throw nn_error("TinyDNN was not compiled with LibDNN support.");
 #endif
   }
 
  private:
-#ifdef CNN_USE_LIBDNN
+#ifdef USE_LIBDNN
   float_t *mutable_double_cast(const cl_mem cl_mem_gpu) {
     return static_cast<float_t *>(reinterpret_cast<void *>(cl_mem_gpu));
   }
@@ -160,7 +159,7 @@ class Conv2dLibDNNForwardOp : public core::OpKernel {
 #endif
 
   void init_libdnn(const Device *device, const core::conv_params &params) {
-#ifdef CNN_USE_LIBDNN
+#ifdef USE_LIBDNN
     assert(device != nullptr);
 
     // Context needs to be initialized with one device and queue
@@ -239,13 +238,13 @@ class Conv2dLibDNNForwardOp : public core::OpKernel {
     // generate sources and compile kernel
     kernel_.reset(new greentea::LibDNNConv<float_t>(config));
 #else
-    CNN_UNREFERENCED_PARAMETER(device);
-    CNN_UNREFERENCED_PARAMETER(params);
+    UNREFERENCED_PARAMETER(device);
+    UNREFERENCED_PARAMETER(params);
 #endif
   }
 
  private:
-#ifdef CNN_USE_LIBDNN
+#ifdef USE_LIBDNN
   std::shared_ptr<greentea::device> dev_ptr_;
   std::shared_ptr<greentea::LibDNNConv<float_t>> kernel_;
   bool initialized_;
@@ -258,7 +257,7 @@ class Conv2dLibDNNBackwardOp : public core::OpKernel {
     : core::OpKernel(context) {}
 
   void compute(core::OpKernelContext &context) override {
-    CNN_UNREFERENCED_PARAMETER(context);
+    UNREFERENCED_PARAMETER(context);
     throw nn_error("Not implemented yet.");
   }
 };

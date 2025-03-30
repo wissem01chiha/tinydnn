@@ -13,7 +13,7 @@
 #include <vector>
 #include "tinydnn/layers/partial_connected_layer.h"
 #include "tinydnn/utils/utils.h"
-#include "tinydnn/utils/image.h"
+#include "tinydnn/image/image.h"
 
 
 namespace tinydnn {

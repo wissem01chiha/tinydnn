@@ -9,7 +9,7 @@
 
 #include <string>
 #include <utility>
-#include "tinydnn/activations/activation_layer.h"
+#include "tinydnn/activation/activation_layer.h"
 #include "tinydnn/layers/layer.h"
 
 namespace tinydnn {

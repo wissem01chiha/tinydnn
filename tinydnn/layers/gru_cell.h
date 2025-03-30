@@ -9,10 +9,10 @@
 
 #include <string>
 #include <vector>
-#include "tinydnn/activations/sigmoid_layer.h"
-#include "tinydnn/activations/tanh_layer.h"
-#include "tinydnn/core/kernels/gru_cell_grad_op.h"
-#include "tinydnn/core/kernels/gru_cell_op.h"
+#include "tinydnn/activation/sigmoid_layer.h"
+#include "tinydnn/activation/tanh_layer.h"
+#include "tinydnn/backend/kernels/gru_cell_grad_op.h"
+#include "tinydnn/backend/kernels/gru_cell_op.h"
 #include "tinydnn/layers/cell.h"
 
 namespace tinydnn {
@@ -165,7 +165,7 @@ class gru_cell : public cell {
 
   void init_backend(const layer *wrapper) {
     cell::set_wrapper(wrapper);
-    CNN_UNREFERENCED_PARAMETER(cell::wrapper_->engine());
+    UNREFERENCED_PARAMETER(cell::wrapper_->engine());
     core::OpKernelConstruction ctx =
       core::OpKernelConstruction(cell::wrapper_->device(), &params_);
     kernel_fwd_.reset(new GRUCellOp(ctx));

@@ -1,15 +1,15 @@
 /*
-    Copyright (c) 2017, Taiga Nomi and the respective contributors
-    All rights reserved.
+  Copyright (c) 2017, Taiga Nomi and the respective contributors
+  All rights reserved.
 
-    Use of this source code is governed by a BSD-style license that can be found
-    in the LICENSE file.
+  Use of this source code is governed by a BSD-style license that can be found
+  in the LICENSE file.
 */
 #pragma once
 
 #include <string>
 #include <utility>
-#include "tinydnn/activations/activation_layer.h"
+#include "tinydnn/activation/activation_layer.h"
 #include "tinydnn/layers/layer.h"
 
 namespace tinydnn {

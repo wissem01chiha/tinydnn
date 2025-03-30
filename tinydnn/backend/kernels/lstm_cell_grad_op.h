@@ -7,10 +7,10 @@
 */
 #pragma once
 
-#include "tiny_dnn/core/framework/op_kernel.h"
-#include "tiny_dnn/core/kernels/lstm_cell_op_internal.h"
+#include "tinydnn/core/op_kernel.h"
+#include "tinydnn/backend/kernels/lstm_cell_op_internal.h"
 
-namespace tiny_dnn {
+namespace tinydnn {
 
 class LSTMCellGradOp : public core::OpKernel {
  public:
@@ -76,4 +76,4 @@ class LSTMCellGradOp : public core::OpKernel {
   }
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

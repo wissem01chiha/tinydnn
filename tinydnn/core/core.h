@@ -9,3 +9,5 @@
 #pragma once
 
 #include "tinydnn/core/session.h"
+#include "tinydnn/core/device.h"
+#include "tinydnn/core/tensor.h"

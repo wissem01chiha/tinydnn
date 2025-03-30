@@ -8,17 +8,16 @@
 #pragma once
 
 #include <vector>
-
 #include "tinydnn/config.h"
-#include "tinydnn/core/backend.h"
-#include "tinydnn/core/kernels/tiny_deconv2d_back_kernel.h"
-#include "tinydnn/core/kernels/tiny_deconv2d_kernel.h"
-#include "tinydnn/core/kernels/tiny_quantized_conv2d_kernel.h"
-#include "tinydnn/core/kernels/tiny_quantized_deconv2d_kernel.h"
+#include "tinydnn/backend/backend.h"
+#include "tinydnn/backend/kernels/tiny_deconv2d_back_kernel.h"
+#include "tinydnn/backend/kernels/tiny_deconv2d_kernel.h"
+#include "tinydnn/backend/kernels/tiny_quantized_conv2d_kernel.h"
+#include "tinydnn/backend/kernels/tiny_quantized_deconv2d_kernel.h"
 
-#ifdef CNN_USE_GEMMLOWP
-#include "tinydnn/core/kernels/tiny_quantized_fully_connected_kernel.h"
-#endif  // CNN_USE_GEMMLOWP
+#ifdef USE_GEMMLOWP
+#include "tinydnn/backend/kernels/tiny_quantized_fully_connected_kernel.h"
+#endif   
 
 namespace tinydnn {
 namespace core {
@@ -79,7 +78,7 @@ class tiny_backend : public backend {
     : params_f_(params)
 #endif
   {
-    CNN_UNREFERENCED_PARAMETER(params);
+    UNREFERENCED_PARAMETER(params);
   }
 
   // quantized fully_connected
@@ -87,7 +86,7 @@ class tiny_backend : public backend {
     fully_params *params,
     std::function<void(const tensor_t &, const tensor_t &, tensor_t &)> f)
     : /*params_f_(params),*/ backward_activation(f) {
-    CNN_UNREFERENCED_PARAMETER(params);
+    UNREFERENCED_PARAMETER(params);
   }
 
   // core math functions
@@ -298,7 +297,7 @@ class tiny_backend : public backend {
 
   void fully_q(const std::vector<tensor_t *> &in_data,
                std::vector<tensor_t *> &out_data) override {
-#ifdef CNN_USE_GEMMLOWP
+#ifdef USE_GEMMLOWP
     const tensor_t &in = *in_data[0];
     const vec_t &W     = (*in_data[1])[0];
     tensor_t &out      = *out_data[0];
@@ -309,17 +308,17 @@ class tiny_backend : public backend {
         out[i], layer_->parallelize());
     }
 #else
-    CNN_UNREFERENCED_PARAMETER(in_data);
-    CNN_UNREFERENCED_PARAMETER(out_data);
+    UNREFERENCED_PARAMETER(in_data);
+    UNREFERENCED_PARAMETER(out_data);
     throw nn_not_implemented_error(
       "quantized fully op requires gemmlowp "
-      "library. please define CNN_USE_GEMMLOWP");
+      "library. please define USE_GEMMLOWP");
 #endif
   }
 
   void fully_eq(const std::vector<tensor_t *> &in_data,
                 std::vector<tensor_t *> &out_data) override {
-#ifdef CNN_USE_GEMMLOWP
+#ifdef USE_GEMMLOWP
     const tensor_t &in   = *in_data[0];
     const vec_t &W       = (*in_data[1])[0];
     vec_t &b             = (*in_data[2])[0];
@@ -335,11 +334,11 @@ class tiny_backend : public backend {
         layer_->parallelize());
     }
 #else
-    CNN_UNREFERENCED_PARAMETER(in_data);
-    CNN_UNREFERENCED_PARAMETER(out_data);
+    UNREFERENCED_PARAMETER(in_data);
+    UNREFERENCED_PARAMETER(out_data);
     throw nn_not_implemented_error(
       "quantized fully op requires gemmlowp "
-      "library. please define CNN_USE_GEMMLOWP");
+      "library. please define USE_GEMMLOWP");
 #endif
   }
 
@@ -347,7 +346,7 @@ class tiny_backend : public backend {
                const std::vector<tensor_t *> &out_data,
                std::vector<tensor_t *> &out_grad,
                std::vector<tensor_t *> &in_grad) override {
-#ifdef CNN_USE_GEMMLOWP
+#ifdef USE_GEMMLOWP
     const tensor_t &prev_out = *in_data[0];
     const vec_t &W           = (*in_data[1])[0];
     tensor_t &dW             = *in_grad[1];
@@ -363,13 +362,13 @@ class tiny_backend : public backend {
         layer_->parallelize());
     }
 #else
-    CNN_UNREFERENCED_PARAMETER(in_data);
-    CNN_UNREFERENCED_PARAMETER(out_data);
-    CNN_UNREFERENCED_PARAMETER(out_grad);
-    CNN_UNREFERENCED_PARAMETER(in_grad);
+    UNREFERENCED_PARAMETER(in_data);
+    UNREFERENCED_PARAMETER(out_data);
+    UNREFERENCED_PARAMETER(out_grad);
+    UNREFERENCED_PARAMETER(in_grad);
     throw nn_not_implemented_error(
       "quantized fully op requires gemmlowp "
-      "library. please define CNN_USE_GEMMLOWP");
+      "library. please define USE_GEMMLOWP");
 #endif
   }
 

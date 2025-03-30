@@ -9,11 +9,10 @@
 
 #include <string>
 #include <utility>
+#include "tinydnn/activation/activation_layer.h"
+#include "tinydnn/layers/layer.h"
 
-#include "tiny_dnn/activations/activation_layer.h"
-#include "tiny_dnn/layers/layer.h"
-
-namespace tiny_dnn {
+namespace tinydnn {
 
 class selu_layer : public activation_layer {
  public:
@@ -108,4 +107,4 @@ class selu_layer : public activation_layer {
   friend struct serialization_buddy;
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

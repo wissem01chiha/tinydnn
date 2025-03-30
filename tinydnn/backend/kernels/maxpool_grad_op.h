@@ -7,12 +7,12 @@
 */
 #pragma once
 
-#include "tiny_dnn/core/framework/op_kernel.h"
+#include "tinydnn/core/op_kernel.h"
+#include "tinydnn/backend/kernels/maxpool_op_avx.h"
+#include "tinydnn/backend/kernels/maxpool_op_internal.h"
+#include "tinydnn/backend/backend.h"
 
-#include "tiny_dnn/core/kernels/maxpool_op_avx.h"
-#include "tiny_dnn/core/kernels/maxpool_op_internal.h"
-
-namespace tiny_dnn {
+namespace tinydnn {
 
 class MaxPoolGradOp : public core::OpKernel {
  public:
@@ -31,13 +31,13 @@ class MaxPoolGradOp : public core::OpKernel {
 
     // call the algorithm depending on the selected engine type
 
-    const core::backend_t engine = context.engine();
+    const backend_t engine = context.engine();
 
-    if (engine == core::backend_t::internal) {
+    if (engine == backend_t::internal) {
       kernels::maxpool_grad_op_internal(prev_delta, curr_delta,
                                         params.out2inmax, params.in2out,
                                         context.parallelize());
-    } else if (engine == core::backend_t::avx) {
+    } else if (engine == backend_t::avx) {
       kernels::maxpool_grad_op_avx(prev_delta, curr_delta, params.out2inmax,
                                    params.in2out, context.parallelize());
     } else {
@@ -46,4 +46,4 @@ class MaxPoolGradOp : public core::OpKernel {
   }
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

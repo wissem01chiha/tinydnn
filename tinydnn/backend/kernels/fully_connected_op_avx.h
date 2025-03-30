@@ -8,13 +8,12 @@
 #pragma once
 
 #include <vector>
-
-#include "tinydnn/core/kernels/fully_connected_op_internal.h"
+#include "tinydnn/backend/kernels/fully_connected_op_internal.h"
 
 namespace tinydnn {
 namespace kernels {
 
-#ifdef CNN_USE_AVX
+#ifdef USE_AVX
 
 template <typename Allocator>
 inline void avx_fully_connected_forward_kernel(
@@ -194,7 +193,7 @@ inline void avx_fully_connected_back_kernel(
                               params, layer_parallelize);
 }
 
-#endif  // CNN_USE_AVX
+#endif  // USE_AVX
 
 inline void fully_connected_op_avx(const tensor_t &in_data,
                                    const vec_t &W,
@@ -202,16 +201,16 @@ inline void fully_connected_op_avx(const tensor_t &in_data,
                                    tensor_t &out_data,
                                    const core::fully_params &params,
                                    const bool layer_parallelize) {
-#ifdef CNN_USE_AVX
+#ifdef USE_AVX
   avx_fully_connected_forward_kernel(in_data, W, bias, out_data, params,
                                      layer_parallelize);
 #else
-  CNN_UNREFERENCED_PARAMETER(in_data);
-  CNN_UNREFERENCED_PARAMETER(W);
-  CNN_UNREFERENCED_PARAMETER(bias);
-  CNN_UNREFERENCED_PARAMETER(out_data);
-  CNN_UNREFERENCED_PARAMETER(params);
-  CNN_UNREFERENCED_PARAMETER(layer_parallelize);
+  UNREFERENCED_PARAMETER(in_data);
+  UNREFERENCED_PARAMETER(W);
+  UNREFERENCED_PARAMETER(bias);
+  UNREFERENCED_PARAMETER(out_data);
+  UNREFERENCED_PARAMETER(params);
+  UNREFERENCED_PARAMETER(layer_parallelize);
   throw nn_error("TinyDNN has not been compiled with AVX support.");
 #endif
 }
@@ -224,18 +223,18 @@ inline void fully_connected_op_avx(const tensor_t &prev_out,
                                    tensor_t &prev_delta,
                                    const core::fully_params &params,
                                    const bool layer_parallelize) {
-#ifdef CNN_USE_AVX
+#ifdef USE_AVX
   avx_fully_connected_back_kernel(prev_out, W, dW, db, curr_delta, prev_delta,
                                   params, layer_parallelize);
 #else
-  CNN_UNREFERENCED_PARAMETER(prev_out);
-  CNN_UNREFERENCED_PARAMETER(W);
-  CNN_UNREFERENCED_PARAMETER(dW);
-  CNN_UNREFERENCED_PARAMETER(db);
-  CNN_UNREFERENCED_PARAMETER(curr_delta);
-  CNN_UNREFERENCED_PARAMETER(prev_delta);
-  CNN_UNREFERENCED_PARAMETER(params);
-  CNN_UNREFERENCED_PARAMETER(layer_parallelize);
+  UNREFERENCED_PARAMETER(prev_out);
+  UNREFERENCED_PARAMETER(W);
+  UNREFERENCED_PARAMETER(dW);
+  UNREFERENCED_PARAMETER(db);
+  UNREFERENCED_PARAMETER(curr_delta);
+  UNREFERENCED_PARAMETER(prev_delta);
+  UNREFERENCED_PARAMETER(params);
+  UNREFERENCED_PARAMETER(layer_parallelize);
   throw nn_error("TinyDNN has not been compiled with AVX support.");
 #endif
 }

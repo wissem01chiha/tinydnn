@@ -77,11 +77,11 @@ class layer : public node {
 
   void set_parallelize(bool parallelize) { parallelize_ = parallelize; }
 
-  void set_backend(std::shared_ptr<core::backend> backend) {
+  void set_backend(std::shared_ptr<backend> backend) {
     backend_ = backend;
   }
 
-  void set_backend_type(core::backend_t backend_type) {
+  void set_backend_type(backend_t backend_type) {
     backend_type_ = backend_type;
   }
 
@@ -91,9 +91,9 @@ class layer : public node {
   bool parallelize() const { return parallelize_; }
 
   // TODO(edgar): Deprecated: use the below method
-  core::backend_t backend_type() const { return backend_->type(); }
+  backend_t backend_type() const { return backend_->type(); }
 
-  core::backend_t engine() const { return backend_type_; }
+  backend_t engine() const { return backend_type_; }
 
   virtual std::string kernel_file() const {
     return std::string("empty_kernel_str");
@@ -109,7 +109,7 @@ class layer : public node {
 
   Device *device() const { return device_ptr_; }
 
-  std::shared_ptr<core::backend> backend() { return backend_; }
+  std::shared_ptr<backend> backend() { return backend_; }
 
   ///< number of incoming edges in this layer
   size_t in_channels() const { return in_channels_; }
@@ -206,7 +206,7 @@ class layer : public node {
   }
 
   void set_out_grads(const std::vector<const vec_t *> *grad, size_t cnt) {
-    CNN_UNREFERENCED_PARAMETER(cnt);
+    UNREFERENCED_PARAMETER(cnt);
     size_t n = 0;
     for (size_t i = 0; i < out_channels_; i++) {
       if (out_type_[i] != vector_type::data) continue;
@@ -223,7 +223,7 @@ class layer : public node {
   }
 
   void set_in_data(const std::vector<const vec_t *> *data, size_t cnt) {
-    CNN_UNREFERENCED_PARAMETER(cnt);
+    UNREFERENCED_PARAMETER(cnt);
     size_t n = 0;
     for (size_t i = 0; i < in_channels_; i++) {
       if (in_type_[i] != vector_type::data) continue;
@@ -234,7 +234,7 @@ class layer : public node {
       size_t sz            = src_data.size();
       dst_data.resize(sz);
 
-      CNN_UNREFERENCED_PARAMETER(in_size);
+      UNREFERENCED_PARAMETER(in_size);
 
       for (size_t j = 0; j < sz; ++j) {
         assert(
@@ -281,7 +281,7 @@ class layer : public node {
    * set input shape of a layer (only used internally while shape inferring)
    */
   virtual void set_in_shape(const shape3d &in_shape) {
-    CNN_UNREFERENCED_PARAMETER(in_shape);
+    UNREFERENCED_PARAMETER(in_shape);
     throw nn_error(
       "Can't set shape. Shape inferring not applicable for this "
       "layer (yet).");
@@ -441,7 +441,7 @@ class layer : public node {
   /**
    * notify changing context (train <=> test)
    **/
-  virtual void set_context(net_phase ctx) { CNN_UNREFERENCED_PARAMETER(ctx); }
+  virtual void set_context(net_phase ctx) { UNREFERENCED_PARAMETER(ctx); }
 
   /* @brief Performs layer forward operation given an input tensor and
    * returns the computed data in tensor form.
@@ -738,7 +738,7 @@ class layer : public node {
   /** Vector containing the type of data for outputs */
   std::vector<vector_type> out_type_;
   /** The current backend type for operations */
-  core::backend_t backend_type_;
+  backend_t backend_type_;
   /** The backend instance (deprecated) */
   std::shared_ptr<core::backend> backend_;
   /** Pointer to the device on which the layer/node will run */

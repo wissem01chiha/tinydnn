@@ -7,12 +7,11 @@
 */
 #pragma once
 
-#include "tiny_dnn/core/framework/op_kernel.h"
+#include "tinydnn/core/op_kernel.h"
+#include "tinydnn/backend/kernels/fully_connected_op_avx.h"
+#include "tinydnn/backend/kernels/fully_connected_op_internal.h"
 
-#include "tiny_dnn/core/kernels/fully_connected_op_avx.h"
-#include "tiny_dnn/core/kernels/fully_connected_op_internal.h"
-
-namespace tiny_dnn {
+namespace tinydnn {
 
 class FullyConnectedGradOp : public core::OpKernel {
  public:
@@ -52,4 +51,4 @@ class FullyConnectedGradOp : public core::OpKernel {
   }
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

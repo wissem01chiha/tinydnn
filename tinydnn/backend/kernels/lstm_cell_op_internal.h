@@ -7,9 +7,9 @@
 */
 #pragma once
 
-#include "tiny_dnn/core/params/lstm_cell_params.h"
+#include "tinydnn/core/lstm_cell_params.h"
 
-namespace tiny_dnn {
+namespace tinydnn {
 namespace kernels {
 
 inline void lstm_cell_op_internal(const tensor_t &x,
@@ -310,4 +310,4 @@ inline void lstm_cell_op_internal(const tensor_t &x,
     0u);  // for_i
 }
 }  // namespace kernels
-}  // namespace tiny_dnn
+}  // namespace tinydnn

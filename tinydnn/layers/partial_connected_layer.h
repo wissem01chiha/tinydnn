@@ -9,11 +9,10 @@
 
 #include <utility>
 #include <vector>
+#include "tinydnn/layers/layer.h"
+#include "tinydnn/utils/utils.h"
 
-#include "tiny_dnn/layers/layer.h"
-#include "tiny_dnn/util/util.h"
-
-namespace tiny_dnn {
+namespace tinydnn {
 
 class partial_connected_layer : public layer {
  public:
@@ -92,7 +91,7 @@ class partial_connected_layer : public layer {
                         const std::vector<tensor_t *> &out_data,
                         std::vector<tensor_t *> &out_grad,
                         std::vector<tensor_t *> &in_grad) override {
-    CNN_UNREFERENCED_PARAMETER(out_data);
+    UNREFERENCED_PARAMETER(out_data);
     const tensor_t &prev_out = *in_data[0];
     const vec_t &W           = (*in_data[1])[0];
     vec_t &dW                = (*in_grad[1])[0];
@@ -146,4 +145,4 @@ class partial_connected_layer : public layer {
   float_t scale_factor_;
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

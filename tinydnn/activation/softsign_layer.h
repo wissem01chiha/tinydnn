@@ -9,7 +9,7 @@
 
 #include <string>
 #include <utility>
-#include "tinydnn/activations/activation_layer.h"
+#include "tinydnn/activation/activation_layer.h"
 #include "tinydnn/layers/layer.h"
 
 namespace tinydnn {
@@ -30,7 +30,7 @@ class softsign_layer : public activation_layer {
                            const vec_t &y,
                            vec_t &dx,
                            const vec_t &dy) override {
-    CNN_UNREFERENCED_PARAMETER(y);
+    UNREFERENCED_PARAMETER(y);
     for (size_t j = 0; j < x.size(); j++) {
       auto d = 1.0 + std::abs(x[j]);
       dx[j]  = dy[j] / (d * d);

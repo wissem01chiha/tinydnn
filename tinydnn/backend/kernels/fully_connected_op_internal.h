@@ -7,9 +7,10 @@
 */
 #pragma once
 
-#include "tiny_dnn/core/params/fully_params.h"
+#include "tinydnn/core/fully_params.h"
+#include "tinydnn/utils/utils.h"
 
-namespace tiny_dnn {
+namespace tinydnn {
 namespace kernels {
 
 inline void fully_connected_op_internal(const tensor_t &in_data,
@@ -71,4 +72,4 @@ inline void fully_connected_op_internal(const tensor_t &prev_out,
 }
 
 }  // namespace kernels
-}  // namespace tiny_dnn
+}  // namespace tinydnn
