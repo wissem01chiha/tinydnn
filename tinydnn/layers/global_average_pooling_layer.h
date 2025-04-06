@@ -12,14 +12,12 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include "tinydnn/layers/layer.h"
+#include "tinydnn/utils/utils.h"
+#include "tinydnn/backend/kernels/global_avepool_grad_op.h"
+#include "tinydnn/backend/kernels/global_avepool_op.h"
 
-#include "tiny_dnn/layers/layer.h"
-#include "tiny_dnn/util/util.h"
-
-#include "tiny_dnn/core/kernels/global_avepool_grad_op.h"
-#include "tiny_dnn/core/kernels/global_avepool_op.h"
-
-namespace tiny_dnn {
+namespace tinydnn {
 
 /**
  * applies channel-wise global average pooling to spatial data.
@@ -118,7 +116,7 @@ class global_average_pooling_layer : public layer {
 
     layer::set_backend_type(backend_type);
     if (backend_type == core::backend_t::avx) {
-#ifndef CNN_USE_AVX
+#ifndef USE_AVX
       nn_warn(
         "tiny-dnn has not been compiled with AVX support, "
         "fallback to internal backend for global avepool layer.\n");

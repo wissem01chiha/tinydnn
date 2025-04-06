@@ -14,7 +14,7 @@
 #include <iostream>  // for ostream, cout, etc
 #include <string>    // for string
 
-namespace tiny_dnn {
+namespace tinydnn {
 
 class timer {
  public:
@@ -109,4 +109,4 @@ class progress_display {
   progress_display &operator=(const progress_display &) = delete;
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

@@ -12,7 +12,7 @@
 #include <string>
 #include <vector>
 #include "tinydnn/layers/layer.h"
-#include "tinydnn/util/math_functions.h"
+#include "tinydnn/utils/math_functions.h"
 #include "tinydnn/utils/utils.h"
 
 namespace tinydnn {

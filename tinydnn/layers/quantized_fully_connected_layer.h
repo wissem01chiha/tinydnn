@@ -12,7 +12,7 @@
 #include <utility>
 #include <vector>
 #include "tinydnn/layers/layer.h"
-#include "tinydnn/util/product.h"
+#include "tinydnn/utils/product.h"
 
 namespace tinydnn {
 
@@ -30,7 +30,7 @@ class quantized_fully_connected_layer : public layer {
     size_t in_dim,
     size_t out_dim,
     bool has_bias                = true,
-    core::backend_t backend_type = core::backend_t::internal)
+    backend_t backend_type = backend_t::internal)
     : layer(std_input_order(has_bias), {vector_type::data}) {
     set_params(in_dim, out_dim, has_bias);
     init_backend(backend_type);
@@ -39,7 +39,7 @@ class quantized_fully_connected_layer : public layer {
   // move constructor
   quantized_fully_connected_layer(quantized_fully_connected_layer &&other)
     : layer(std::move(other)), params_(std::move(other.params_)) {
-    init_backend(core::backend_t::internal);
+    init_backend(backend_t::internal);
   }
 
   size_t fan_in_size() const override { return params_.in_size_; }
@@ -91,12 +91,12 @@ class quantized_fully_connected_layer : public layer {
     params_.has_bias_ = has_bias;
   }
 
-  void init_backend(core::backend_t backend_type) {
-    std::shared_ptr<core::backend> backend = nullptr;
+  void init_backend(backend_t backend_type) {
+    std::shared_ptr<backend> backend = nullptr;
 
     // allocate new backend
-    if (backend_type == core::backend_t::internal) {
-      backend = std::make_shared<core::tiny_backend>(&params_);
+    if (backend_type == backend_t::internal) {
+      backend = std::make_shared<tiny_backend>(&params_);
     } else {
       throw nn_error("Not supported backend type.");
     }

@@ -7,15 +7,16 @@
 */
 #pragma once
 
-#include "tiny_dnn/core/params/fully_params.h"
+#include "tinydnn/core/fully_params.h"
+#include "tinydnn/utils/utils.h"
 
-#ifdef CNN_USE_INTEL_MKL
+#ifdef USE_INTEL_MKL
 extern "C" {
 #include <mkl_cblas.h>
 }
 #endif
 
-namespace tiny_dnn {
+namespace tinydnn {
 namespace kernels {
 
 inline void fully_connected_op_intel_mkl(const tensor_t &in_data,
@@ -24,7 +25,7 @@ inline void fully_connected_op_intel_mkl(const tensor_t &in_data,
                                          tensor_t &out_data,
                                          const core::fully_params &params,
                                          const bool layer_parallelize) {
-#ifdef CNN_USE_INTEL_MKL
+#ifdef USE_INTEL_MKL
   if (in_data.size() != out_data.size()) {
     throw nn_error("fully_connected_op_intel_mkl args size mismatch");
   }
@@ -40,7 +41,7 @@ inline void fully_connected_op_intel_mkl(const tensor_t &in_data,
       memset(output, 0, sizeof(float_t) * out_size);
     else
       memcpy(output, bias.data(), sizeof(float_t) * out_size);
-#ifdef CNN_USE_DOUBLE
+#ifdef USE_DOUBLE
     cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, 1, out_size, in_size,
                 alpha, input, in_size, weight, out_size, beta, output, out_size);
 #else

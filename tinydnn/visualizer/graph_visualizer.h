@@ -8,17 +8,14 @@
 #pragma once
 
 #include <string>
-#include <unordered_map>
 #include <vector>
+#include <unordered_map>
 #include "tinydnn/layers/layer.h"
 #include "tinydnn/network.h"
 #include "tinydnn/node.h"
 
 namespace tinydnn {
 
-/**
- * utility for graph visualization
- **/
 class graph_visualizer {
  public:
   explicit graph_visualizer(layer *root_node,
@@ -102,7 +99,7 @@ class graph_visualizer {
                                const std::vector<shape3d> &shapes,
                                const std::vector<vector_type> &vtypes,
                                const std::string &port_prefix) {
-    CNN_UNREFERENCED_PARAMETER(vtypes);
+    UNREFERENCED_PARAMETER(vtypes);
     for (size_t i = 0; i < shapes.size(); i++) {
       stream << "|<" << port_prefix << i << ">" << shapes[i] << "(" << vtypes[i]
              << ")";

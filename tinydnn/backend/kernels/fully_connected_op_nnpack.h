@@ -7,8 +7,8 @@
 */
 #pragma once
 
-#include "tinydnn/core/backend.h"
-#include "tinydnn/core/params/fully_params.h"
+#include "tinydnn/backend/backend.h"
+#include "tinydnn/core/fully_params.h"
 
 namespace tinydnn {
 namespace kernels {
@@ -19,7 +19,7 @@ inline void fully_connected_op_nnpack(const tensor_t &in_data,
                                       tensor_t &out_data,
                                       const core::fully_params &params,
                                       const bool layer_parallelize) {
-#ifdef CNN_USE_NNPACK
+#ifdef USE_NNPACK
   // call singleton to initialize NNPACK
   core::NNPackInitializer::getInstance().initialize();
 
@@ -47,12 +47,12 @@ inline void fully_connected_op_nnpack(const tensor_t &in_data,
           [&](size_t i) { output_ptr[i] += bias[i]; });
   }
 #else
-  CNN_UNREFERENCED_PARAMETER(in_data);
-  CNN_UNREFERENCED_PARAMETER(W);
-  CNN_UNREFERENCED_PARAMETER(bias);
-  CNN_UNREFERENCED_PARAMETER(out_data);
-  CNN_UNREFERENCED_PARAMETER(params);
-  CNN_UNREFERENCED_PARAMETER(layer_parallelize);
+  UNREFERENCED_PARAMETER(in_data);
+  UNREFERENCED_PARAMETER(W);
+  UNREFERENCED_PARAMETER(bias);
+  UNREFERENCED_PARAMETER(out_data);
+  UNREFERENCED_PARAMETER(params);
+  UNREFERENCED_PARAMETER(layer_parallelize);
   throw nn_error("TinyDNN has not been compiled with NNPACK support.");
 #endif
 }

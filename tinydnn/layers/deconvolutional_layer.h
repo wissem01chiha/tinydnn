@@ -63,7 +63,7 @@ class deconvolutional_layer : public layer {
                         bool has_bias                = true,
                         size_t w_stride              = 1,
                         size_t h_stride              = 1,
-                        core::backend_t backend_type = core::default_engine())
+                        backend_t backend_type = default_engine())
     : layer(std_input_order(has_bias), {vector_type::data}) {
     deconv_set_params(shape3d(in_width, in_height, in_channels), window_size,
                       window_size, out_channels, pad_type, has_bias, w_stride,
@@ -106,7 +106,7 @@ class deconvolutional_layer : public layer {
                         bool has_bias                = true,
                         size_t w_stride              = 1,
                         size_t h_stride              = 1,
-                        core::backend_t backend_type = core::default_engine())
+                        backend_t backend_type = default_engine())
     : layer(std_input_order(has_bias), {vector_type::data}) {
     deconv_set_params(shape3d(in_width, in_height, in_channels), window_width,
                       window_height, out_channels, pad_type, has_bias, w_stride,
@@ -149,7 +149,7 @@ class deconvolutional_layer : public layer {
                         bool has_bias                = true,
                         size_t w_stride              = 1,
                         size_t h_stride              = 1,
-                        core::backend_t backend_type = core::default_engine())
+                        backend_t backend_type = default_engine())
     : layer(std_input_order(has_bias), {vector_type::data}) {
     deconv_set_params(shape3d(in_width, in_height, in_channels), window_size,
                       window_size, out_channels, pad_type, has_bias, w_stride,
@@ -194,7 +194,7 @@ class deconvolutional_layer : public layer {
                         bool has_bias                = true,
                         size_t w_stride              = 1,
                         size_t h_stride              = 1,
-                        core::backend_t backend_type = core::default_engine())
+                        backend_t backend_type = default_engine())
     : layer(std_input_order(has_bias), {vector_type::data}) {
     deconv_set_params(shape3d(in_width, in_height, in_channels), window_width,
                       window_height, out_channels, pad_type, has_bias, w_stride,
@@ -264,7 +264,6 @@ class deconvolutional_layer : public layer {
 
   std::string layer_type() const override { return "deconv"; }
 
-#ifdef DNN_USE_IMAGE_API
   image<> weight_to_image() const {
     image<> img;
     const size_t border_width = 1;
@@ -301,16 +300,15 @@ class deconvolutional_layer : public layer {
     }
     return img;
   }
-#endif  // DNN_USE_IMAGE_API
 
   friend struct serialization_buddy;
 
  private:
-  void init_backend(const core::backend_t backend_type) {
-    std::shared_ptr<core::backend> backend = nullptr;
+  void init_backend(const backend_t backend_type) {
+    std::shared_ptr<backend> backend = nullptr;
 
     // allocate new backend
-    if (backend_type == core::backend_t::internal) {
+    if (backend_type == backend_t::internal) {
       backend = std::make_shared<core::tiny_backend>(
         &params_,
         [this](const tensor_t &in) { return copy_and_unpad_output(in); },
@@ -318,7 +316,7 @@ class deconvolutional_layer : public layer {
           return copy_and_pad_delta(delta, dst);
         },
         &deconv_layer_worker_storage_);
-#ifdef CNN_USE_AVX
+#ifdef USE_AVX
     } else if (backend_type == core::backend_t::avx) {
       backend = std::make_shared<core::avx_backend>(
         &params_,
@@ -382,8 +380,8 @@ class deconvolutional_layer : public layer {
   size_t in_length(size_t in_length,
                    size_t window_size,
                    padding pad_type) const {
-    CNN_UNREFERENCED_PARAMETER(window_size);
-    CNN_UNREFERENCED_PARAMETER(pad_type);
+    UNREFERENCED_PARAMETER(window_size);
+    UNREFERENCED_PARAMETER(pad_type);
     return in_length;
   }
 
@@ -488,7 +486,7 @@ class deconvolutional_layer : public layer {
   core::deconv_params params_;
 
   /* The type of backend */
-  core::backend_t backend_type_;
+  backend_t backend_type_;
 
   core::deconv_layer_worker_specific_storage deconv_layer_worker_storage_;
 };

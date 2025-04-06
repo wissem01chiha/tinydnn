@@ -11,11 +11,10 @@
 #include <cmath>
 #include <string>
 #include <vector>
+#include "tinydnn/layers/layer.h"
+#include "tinydnn/utils/utils.h"
 
-#include "tiny_dnn/layers/layer.h"
-#include "tiny_dnn/util/util.h"
-
-namespace tiny_dnn {
+namespace tinydnn {
 
 /**
  * Pad zeros around tensors.
@@ -119,4 +118,4 @@ class zero_pad_layer : public layer {
   size_t h_pad_size_;
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

@@ -28,7 +28,6 @@
 #include "tinydnn/optimizer/optimizer.h"
 #include "tinydnn/image/image.h"
 
-
 namespace tinydnn {
 
 /**

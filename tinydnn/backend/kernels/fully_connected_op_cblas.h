@@ -7,9 +7,10 @@
 */
 #pragma once
 
-#include "tinydnn/core/params/fully_params.h"
+#include "tinydnn/core/fully_params.h"
+#include "tinydnn/utils/utils.h"
 
-#ifdef CNN_USE_CBLAS
+#ifdef USE_CBLAS
 extern "C" {
 #include <cblas.h>
 }
@@ -24,7 +25,7 @@ inline void fully_connected_op_cblas(const tensor_t &in_data,
                                      tensor_t &out_data,
                                      const core::fully_params &params,
                                      const bool layer_parallelize) {
-#ifdef CNN_USE_CBLAS
+#ifdef USE_CBLAS
   size_t out_size       = params.out_size_;
   size_t in_size        = params.in_size_;
   float_t alpha         = 1;
@@ -36,7 +37,7 @@ inline void fully_connected_op_cblas(const tensor_t &in_data,
     memset(output, 0, sizeof(float_t) * out_size);
   else
     memcpy(output, bias.data(), sizeof(float_t) * out_size);
-#ifdef CNN_USE_DOUBLE
+#ifdef USE_DOUBLE
   cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans, 1, out_size, in_size,
               alpha, input, in_size, weight, out_size, beta, output, out_size);
 #else
@@ -45,7 +46,7 @@ inline void fully_connected_op_cblas(const tensor_t &in_data,
 #endif
 #else
   throw nn_error("Compiled without CBLAS support");
-#endif  // CNN_USE_CBLAS
+#endif  // USE_CBLAS
 }
 
 }  // namespace kernels

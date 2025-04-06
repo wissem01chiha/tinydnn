@@ -10,11 +10,10 @@
 #include <algorithm>
 #include <string>
 #include <vector>
+#include "tinydnn/layers/layer.h"
+#include "tinydnn/utils/utils.h"
 
-#include "tiny_dnn/layers/layer.h"
-#include "tiny_dnn/util/util.h"
-
-namespace tiny_dnn {
+namespace tinydnn {
 
 enum class slice_type { slice_samples, slice_channels };
 
@@ -94,8 +93,8 @@ class slice_layer : public layer {
                         const std::vector<tensor_t *> &out_data,
                         std::vector<tensor_t *> &out_grad,
                         std::vector<tensor_t *> &in_grad) override {
-    CNN_UNREFERENCED_PARAMETER(in_data);
-    CNN_UNREFERENCED_PARAMETER(out_data);
+    UNREFERENCED_PARAMETER(in_data);
+    UNREFERENCED_PARAMETER(out_data);
 
     switch (slice_type_) {
       case slice_type::slice_samples:
@@ -220,4 +219,4 @@ class slice_layer : public layer {
   std::vector<size_t> slice_size_;
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

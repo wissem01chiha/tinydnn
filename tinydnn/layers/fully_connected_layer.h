@@ -30,7 +30,7 @@ class fully_connected_layer : public layer {
   fully_connected_layer(size_t in_dim,
                         size_t out_dim,
                         bool has_bias                = true,
-                        core::backend_t backend_type = core::default_engine())
+                        backend_t backend_type = default_engine())
     : layer(std_input_order(has_bias), {vector_type::data}) {
     set_params(in_dim, out_dim, has_bias);
     init_backend(backend_type);
@@ -100,15 +100,15 @@ class fully_connected_layer : public layer {
     params_.has_bias_ = has_bias;
   }
 
-  void init_backend(core::backend_t backend_type) {
+  void init_backend(backend_t backend_type) {
     core::OpKernelConstruction ctx =
       core::OpKernelConstruction(layer::device(), &params_);
 
-    if (backend_type == core::backend_t::internal ||
-        backend_type == core::backend_t::avx ||
-        backend_type == core::backend_t::nnpack ||
-        backend_type == core::backend_t::cblas ||
-        backend_type == core::backend_t::intel_mkl) {
+    if (backend_type == backend_t::internal ||
+        backend_type == backend_t::avx ||
+        backend_type == backend_t::nnpack ||
+        backend_type == backend_t::cblas ||
+        backend_type == backend_t::intel_mkl) {
       kernel_fwd_.reset(new FullyConnectedOp(ctx));
       kernel_back_.reset(new FullyConnectedGradOp(ctx));
     } else {

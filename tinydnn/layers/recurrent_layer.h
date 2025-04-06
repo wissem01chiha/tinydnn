@@ -10,10 +10,10 @@
 #include <map>
 #include <string>
 #include <vector>
-#include "tiny_dnn/layers/cell.h"
-#include "tiny_dnn/layers/layer.h"
+#include "tinydnn/layers/cell.h"
+#include "tinydnn/layers/layer.h"
 
-namespace tiny_dnn {
+namespace tinydnn {
 
 /*
  * optional parameters for the recurrent layer
@@ -22,7 +22,7 @@ struct recurrent_layer_parameters {
   // clip gradients to this value
   float_t clip = 0;
   // the backend engine
-  core::backend_t backend_type = core::default_engine();
+  backend_t backend_type = default_engine();
   // max number of sequential steps to remember
   size_t bptt_max = 0;  // 0 will set it to "seq_len"
   // whether to reset the state between timesteps
@@ -445,4 +445,4 @@ class recurrent_layer : public layer {
   std::vector<bool> delete_mask_;
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

@@ -14,6 +14,7 @@
 #include "tinydnn/backend/kernels/tiny_deconv2d_kernel.h"
 #include "tinydnn/backend/kernels/tiny_quantized_conv2d_kernel.h"
 #include "tinydnn/backend/kernels/tiny_quantized_deconv2d_kernel.h"
+#include "tinydnn/layers/layer.h"
 
 #ifdef USE_GEMMLOWP
 #include "tinydnn/backend/kernels/tiny_quantized_fully_connected_kernel.h"

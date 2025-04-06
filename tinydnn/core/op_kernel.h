@@ -12,11 +12,12 @@
 #include <vector>
 #include "tinydnn/core/device.fwd.h"
 #include "tinydnn/core/conv_params.h"
+#include "tinydnn/layers/layer.h"
 
 namespace tinydnn {
 namespace core {
 
-class OpKernel;  // delared below
+class OpKernel;  
 
 class OpKernelConstruction {
  public:

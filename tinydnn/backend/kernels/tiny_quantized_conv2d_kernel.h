@@ -9,11 +9,10 @@
 
 #include <algorithm>
 #include <vector>
+#include "tinydnn/backend/kernels/tiny_quantization_kernel.h"
+#include "tinydnn/core/conv_params.h"
 
-#include "tiny_dnn/core/kernels/tiny_quantization_kernel.h"
-#include "tiny_dnn/core/params/conv_params.h"
-
-namespace tiny_dnn {
+namespace tinydnn {
 namespace core {
 namespace kernels {
 

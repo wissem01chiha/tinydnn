@@ -11,8 +11,8 @@
 #include <string>
 #include <vector>
 #include "tinydnn/utils/utils.h"
-#include "tinydnn/util/image.h"
-
+#include "tinydnn/image/image.h"
+#include "tinydnn/layers/layer.h"
 
 namespace tinydnn {
 
@@ -45,7 +45,7 @@ class max_unpooling_layer : public layer {
                           in_size.depth_,
                           unpooling_size,
                           (in_size.height_ == 1 ? 1 : unpooling_size)) {
-    CNN_UNREFERENCED_PARAMETER(stride);
+    UNREFERENCED_PARAMETER(stride);
   }
 
   /**
@@ -98,7 +98,7 @@ class max_unpooling_layer : public layer {
                         const std::vector<tensor_t *> &out_data,
                         std::vector<tensor_t *> &out_grad,
                         std::vector<tensor_t *> &in_grad) override {
-    CNN_UNREFERENCED_PARAMETER(out_data);
+    UNREFERENCED_PARAMETER(out_data);
     tensor_t &prev_delta = *in_grad[0];
     tensor_t &curr_delta = *out_grad[0];
 

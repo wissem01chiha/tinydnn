@@ -7,11 +7,12 @@
 */
 #pragma once
 
-#include "tiny_dnn/core/framework/op_kernel.h"
-#include "tiny_dnn/core/kernels/global_avepool_op_avx.h"
-#include "tiny_dnn/core/kernels/global_avepool_op_internal.h"
+#include "tinydnn/core/op_kernel.h"
+#include "tinydnn/backend/kernels/global_avepool_op_avx.h"
+#include "tinydnn/backend/kernels/global_avepool_op_internal.h"
+#include "tinydnn/backend/backend.h"
 
-namespace tiny_dnn {
+namespace tinydnn {
 
 class GlobalAvePoolGradOp : public core::OpKernel {
  public:
@@ -28,10 +29,10 @@ class GlobalAvePoolGradOp : public core::OpKernel {
     // initialize outputs
     fill_tensor(prev_delta, float_t{0});
 
-    const core::backend_t engine = context.engine();
+    const backend_t engine = context.engine();
 
-    if (engine == core::backend_t::avx) {
-#ifdef CNN_USE_AVX
+    if (engine == backend_t::avx) {
+#ifdef USE_AVX
       kernels::global_avepool_grad_op_avx(prev_delta, curr_delta, params,
                                           context.parallelize());
 #endif

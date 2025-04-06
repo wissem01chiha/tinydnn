@@ -34,14 +34,14 @@ class Conv2dOp : public core::OpKernel {
     // call convolution algorithm depending
     // on the selected engine type
 
-    const core::backend_t engine = context.engine();
+    const backend_t engine = context.engine();
 
-    if (engine == core::backend_t::internal) {
+    if (engine == backend_t::internal) {
       kernels::conv2d_op_internal(in_data, W[0], bias[0], out_data, params,
                                   context.parallelize());
-    } else if (engine == core::backend_t::nnpack) {
+    } else if (engine == backend_t::nnpack) {
       kernels::conv2d_op_nnpack(in_data, W[0], bias[0], out_data, params);
-    } else if (engine == core::backend_t::avx) {
+    } else if (engine == backend_t::avx) {
       kernels::conv2d_op_avx(in_data, W[0], bias[0], out_data, params,
                              context.parallelize());
     } else {

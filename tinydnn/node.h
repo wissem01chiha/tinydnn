@@ -25,11 +25,11 @@
 
 namespace tinydnn {
 
-class node;
-class layer;
-class edge;
+  class node;
+  class layer;
+  class edge;
 
-typedef std::shared_ptr<edge> edgeptr_t;
+  typedef std::shared_ptr<edge> edgeptr_t;
 
 /**
  * base class of all kind of tinny-cnn data

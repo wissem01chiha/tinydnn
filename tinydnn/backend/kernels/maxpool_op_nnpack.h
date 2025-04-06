@@ -7,16 +7,16 @@
 */
 #pragma once
 
-#include "tiny_dnn/core/backend.h"
-#include "tiny_dnn/core/params/maxpool_params.h"
+#include "tinydnn/backend/backend.h"
+#include "tinydnn/core/maxpool_params.h"
 
-namespace tiny_dnn {
+namespace tinydnn {
 namespace kernels {
 
 inline void maxpool_op_nnpack(const tensor_t &in_data,
                               tensor_t &out_data,
                               const core::maxpool_params &params) {
-#ifdef CNN_USE_NNPACK
+#ifdef USE_NNPACK
   // call singleton to initialize NNPACK
   core::NNPackInitializer::getInstance().initialize();
 
@@ -33,7 +33,7 @@ inline void maxpool_op_nnpack(const tensor_t &in_data,
   const float *input_ptr = in_data[0].data();
   float *output_ptr      = out_data[0].data();
 
-  // TODO(edgarriba): embed it into a class
+  // TODO: embed it into a class
   const size_t num_mkl_threads = 1;
   pthreadpool_t threadpool     = pthreadpool_create(num_mkl_threads);
 
@@ -47,15 +47,15 @@ inline void maxpool_op_nnpack(const tensor_t &in_data,
     throw nn_error("Could not succeed with nnp_max_pooling_output");
   }
 
-  // TODO(edgarriba): embed it into a class
+  // TODO: embed it into a class
   pthreadpool_destroy(threadpool);
 #else
-  CNN_UNREFERENCED_PARAMETER(in_data);
-  CNN_UNREFERENCED_PARAMETER(out_data);
-  CNN_UNREFERENCED_PARAMETER(params);
+  UNREFERENCED_PARAMETER(in_data);
+  UNREFERENCED_PARAMETER(out_data);
+  UNREFERENCED_PARAMETER(params);
   throw nn_error("TinyDNN has not been compiled with NNPACK support.");
 #endif
 }
 
 }  // namespace kernels
-}  // namespace tiny_dnn
+}  // namespace tinydnn

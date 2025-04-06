@@ -748,7 +748,7 @@ class network {
    **/
   void from_json(const std::string &json_string,
                  content_type what = content_type::model) {
-#ifndef CNN_NO_SERIALIZATION
+#ifdef USE_SERIALIZATION
     std::stringstream ss;
     ss << json_string;
     cereal::JSONInputArchive ia(ss);
@@ -914,7 +914,7 @@ class network {
                       int batch_size,
                       const int num_tasks,
                       const tensor_t *t_cost) {
-    CNN_UNREFERENCED_PARAMETER(num_tasks);
+    UNREFERENCED_PARAMETER(num_tasks);
     std::copy(&in[0], &in[0] + batch_size, &in_batch_[0]);
     std::copy(&t[0], &t[0] + batch_size, &t_batch_[0]);
     std::vector<tensor_t> t_cost_batch =
