@@ -2,8 +2,8 @@
 #pragma once
 
 #include <vector>
-#include "tinydnn/utils/types.h"
 #include <algorithm>
+#include "tinydnn/utils/types.h"
 
 namespace tinydnn {
 

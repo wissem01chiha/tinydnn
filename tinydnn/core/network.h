@@ -21,7 +21,7 @@
 #include <vector>
 #include "tinydnn/config.h"
 #include "tinydnn/loss/loss.h"
-#include "tinydnn/nodes.h"
+#include "tinydnn/core/nodes.h"
 #include "tinydnn/utils/utils.h"
 #ifdef USE_SERIALIZATION
   #include <fstream>

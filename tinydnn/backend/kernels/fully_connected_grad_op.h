@@ -8,7 +8,7 @@
 #pragma once
 
 #include "tinydnn/core/op_kernel.h"
-#include "tinydnn/backend/kernels/fully_connected_op_avx.h"
+#include "tinydnn/backend/kernels/avx_fully_connected_op.h"
 #include "tinydnn/backend/kernels/fully_connected_op_internal.h"
 
 namespace tinydnn {

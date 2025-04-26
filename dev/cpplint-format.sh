@@ -1,6 +1,6 @@
 #!/bin/bash
 
-python third_party/cpplint.py \
+python thirdparty/cpplint.py \
       --filter=-runtime/references \
       tiny_dnn/*/*/*.h examples/*/*.cpp examples/*/*/*.cpp test/*.h
 
@@ -31,7 +31,6 @@ for cpp_file in $all_cpp_files; do
         exit 1
     fi
 
-    # enforce google style guide.  cpplint.py is chatty so pipe non-errors to /dev/null.
     python $cpplint_bin --filter=-runtime/references $cpp_file > /dev/null
     if [ $? -ne 0 ]; then
         echo "Error, cpplint.py failed google style: $cpp_file"

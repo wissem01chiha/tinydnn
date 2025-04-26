@@ -16,6 +16,13 @@
 
 namespace tinydnn {
 
+// -------------------------------- Declarations -----------------------------------
+
+class activation_layer;
+
+// -------------------------------- Implementations --------------------------------
+
+
 class activation_layer : public layer {
  public:
   /**

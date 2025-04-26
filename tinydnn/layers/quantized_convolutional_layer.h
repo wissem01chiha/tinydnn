@@ -12,9 +12,10 @@
 #include <string>
 #include <utility>
 #include <vector>
-#include "tinydnn/backend/backend_tiny.h"
+#include "tinydnn/layers/layer.h"
+#include "tinydnn/backend/tiny_backend.h"
 #ifdef USE_AVX
-#include "tinydnn/core/backend_avx.h"
+#include "tinydnn/core/avx_backend.h"
 #endif
 #include "tinydnn/utils/utils.h"
 #include "tinydnn/image/image.h"
@@ -63,7 +64,7 @@ class quantized_convolutional_layer : public layer {
     bool has_bias                = true,
     size_t w_stride              = 1,
     size_t h_stride              = 1,
-    core::backend_t backend_type = core::backend_t::internal)
+    backend_t backend_type = backend_t::internal)
     : layer(std_input_order(has_bias), {vector_type::data}) {
     conv_set_params(shape3d(in_width, in_height, in_channels), window_size,
                     window_size, out_channels, pad_type, has_bias, w_stride,
@@ -107,7 +108,7 @@ class quantized_convolutional_layer : public layer {
     bool has_bias                = true,
     size_t w_stride              = 1,
     size_t h_stride              = 1,
-    core::backend_t backend_type = core::backend_t::internal)
+    backend_t backend_type = backend_t::internal)
     : layer(std_input_order(has_bias), {vector_type::data}) {
     conv_set_params(shape3d(in_width, in_height, in_channels), window_width,
                     window_height, out_channels, pad_type, has_bias, w_stride,
@@ -151,7 +152,7 @@ class quantized_convolutional_layer : public layer {
     bool has_bias                = true,
     size_t w_stride              = 1,
     size_t h_stride              = 1,
-    core::backend_t backend_type = core::backend_t::internal)
+    backend_t backend_type = backend_t::internal)
     : layer(std_input_order(has_bias), {vector_type::data}) {
     conv_set_params(shape3d(in_width, in_height, in_channels), window_size,
                     window_size, out_channels, pad_type, has_bias, w_stride,
@@ -197,7 +198,7 @@ class quantized_convolutional_layer : public layer {
     bool has_bias                = true,
     size_t w_stride              = 1,
     size_t h_stride              = 1,
-    core::backend_t backend_type = core::backend_t::internal)
+    backend_t backend_type = backend_t::internal)
     : layer(std_input_order(has_bias), {vector_type::data}) {
     conv_set_params(shape3d(in_width, in_height, in_channels), window_width,
                     window_height, out_channels, pad_type, has_bias, w_stride,
@@ -211,7 +212,7 @@ class quantized_convolutional_layer : public layer {
     : layer(std::move(other)),
       params_(std::move(other.params_)),
       cws_(std::move(other.cws_)) {
-    init_backend(core::backend_t::internal);
+    init_backend(backend_t::internal);
   }
 
   ///< number of incoming connections for each output unit
@@ -274,7 +275,6 @@ class quantized_convolutional_layer : public layer {
 
   std::string layer_type() const override { return "q_conv"; }
 
-#ifdef DNN_USE_IMAGE_API
   image<> weight_to_image() const {
     image<> img;
     const size_t border_width = 1;
@@ -312,7 +312,6 @@ class quantized_convolutional_layer : public layer {
     }
     return img;
   }
-#endif  // DNN_USE_IMAGE_API
 
   friend struct serialization_buddy;
 
@@ -457,11 +456,11 @@ class quantized_convolutional_layer : public layer {
     }
   }
 
-  void init_backend(const core::backend_t backend_type) {
-    std::shared_ptr<core::backend> backend = nullptr;
+  void init_backend(const backend_t backend_type) {
+    std::shared_ptr<backend_t> backend = nullptr;
 
     // allocate new backend
-    if (backend_type == core::backend_t::internal) {
+    if (backend_type == backend_t::internal) {
       backend = std::make_shared<core::tiny_backend>(
         &params_, [this](const tensor_t &in) { return copy_and_pad_input(in); },
         [this](const tensor_t &delta, tensor_t &dst) {

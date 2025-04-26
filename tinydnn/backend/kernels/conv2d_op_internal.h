@@ -6,8 +6,9 @@
     in the LICENSE file.
 */
 #pragma once
+#include "tinydnn/utils/utils.h"
 
-namespace tiny_dnn {
+namespace tinydnn {
 namespace kernels {
 
 inline void conv2d_op_internal(const tensor_t &in_data,
@@ -181,4 +182,4 @@ void conv2d_op_internal(const tensor_t &prev_out,
 }
 
 }  // namespace kernels
-}  // namespace tiny_dnn
+}  // namespace tinydnn

@@ -8,7 +8,6 @@
 #pragma once
 
 #include <vector>
-
 #include "tinydnn/utils/utils.h"
 
 namespace tinydnn {

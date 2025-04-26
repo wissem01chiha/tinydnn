@@ -15,7 +15,7 @@
 
 namespace tinydnn {
 
-// ---------- Forward Declarations --------------------
+// -------------------------------- Declarations ----------------------------------
 
 #ifdef USE_DOUBLE
     typedef double float_t;
@@ -62,7 +62,7 @@ template <typename... Ts>
 using are_all_xexpr = are_all<is_xexpression, Ts...>;
 
 
-// ---------- Implementations --------------------
+// -------------------------------- Implementations --------------------------------
 
 enum class net_phase { train, test };
 

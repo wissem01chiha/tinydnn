@@ -8,7 +8,7 @@
 #pragma once
 
 #include "tinydnn/core/op_kernel.h"
-#include "tinydnn/backend/kernels/conv2d_grad_op_avx.h"
+#include "tinydnn/backend/kernels/avx_conv2d_grad_op.h"
 #include "tinydnn/backend/kernels/conv2d_op_internal.h"
 
 namespace tinydnn {
@@ -35,12 +35,12 @@ class Conv2dGradOp : public core::OpKernel {
     // call convolution algorithm depending
     // on the selected engine type
 
-    const core::backend_t engine = context.engine();
+    const backend_t engine = context.engine();
 
-    if (engine == core::backend_t::internal) {
+    if (engine == backend_t::internal) {
       kernels::conv2d_op_internal(prev_out, W[0], dW, db, curr_delta,
                                   prev_delta, params, context.parallelize());
-    } else if (engine == core::backend_t::avx) {
+    } else if (engine == backend_t::avx) {
       kernels::conv2d_grad_op_avx(prev_out, W[0], dW, db, curr_delta,
                                   prev_delta, params, context.parallelize());
     } else {

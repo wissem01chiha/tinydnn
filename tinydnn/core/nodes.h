@@ -12,12 +12,10 @@
 #include <unordered_map>
 #include <utility>
 #include <vector>
-
 #ifdef USE_SERIALIZATION
 #include "thirdparty/cereal/types/tuple.hpp"
 #include "thirdparty/cereal/types/utility.hpp"
 #endif
-
 #include "tinydnn/layers/layer.h"
 #include "tinydnn/optimizer/optimizer.h"
 #include "tinydnn/utils/utils.h"
@@ -33,7 +31,7 @@ void save(Archive &ar, const std::vector<tinydnn::layer *> &v) {
   }
 #else
   throw tinydnn::nn_error("tiny-dnn was not built with Serialization support");
-#endif  // NO_SERIALIZATION
+#endif  
 }
 
 template <typename Archive>
@@ -46,8 +44,8 @@ void load(Archive &ar, std::vector<std::shared_ptr<tinydnn::layer>> &v) {
     v.emplace_back(tinydnn::layer::load_layer(ar));
   }
 #else
-  throw tinydnn::nn_error("tiny-dnn was not built with Serialization support");
-#endif  // CNN_NO_SERIALIZATION
+  throw tinydnn::nn_error("tinydnn was not built with Serialization support");
+#endif  
 }
 
 }  // namespace cereal

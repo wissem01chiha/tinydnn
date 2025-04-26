@@ -1,30 +1,38 @@
 cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
 
-####
-# Set variables:
-#   * PROJECT_NAME
-#   * PROJECT_VERSION
 project(tinydnn VERSION 1.0.0 LANGUAGES C CXX)
 
-#####
-# Enables link_directories() treat paths relative
-# to the source dir.
 if(POLICY CMP0015)
     cmake_policy(SET CMP0015 NEW)
 endif(POLICY CMP0015)
 
-#####
-# Enables project() command manages VERSION variables.
 if(POLICY CMP0048)
     cmake_policy(SET CMP0048 NEW)
 endif(POLICY CMP0048)
 
-#####
-# Change the default build type from Debug to Release, while still
-# supporting overriding the build type.
-#
-# The CACHE STRING logic here and elsewhere is needed to force CMake
-# to pay attention to the value of these variables.
+option(USE_SSE          "Build tiny-dnn with SSE library support"            ON)
+option(USE_AVX          "Build tiny-dnn with AVX library support"            ON)
+option(USE_AVX2         "Build tiny-dnn with AVX2 library support"           OFF)
+option(USE_TBB          "Build tiny-dnn with TBB library support"            OFF)
+option(USE_OMP          "Build tiny-dnn with OMP library support"            OFF)
+option(USE_NNPACK       "Build tiny-dnn with NNPACK library support"         OFF)
+option(USE_CBLAS        "Build tiny-dnn with CBLAS library support"          OFF)
+option(USE_INTEL_MKL    "Build tiny-dnn with Intel MKL library support"      OFF)
+option(USE_OPENCL       "Build tiny-dnn with OpenCL library support"         OFF)
+option(USE_LIBDNN       "Build tiny-dnn with GreenteaLibDNN library support" OFF)
+option(USE_SERIALIZER   "Build tiny-dnn with Serialization support"          ON)
+option(USE_DOUBLE       "Build tiny-dnn with double precision computations"  OFF)
+option(USE_IMAGE_API    "Build tiny-dnn with Image API support"              ON)
+option(USE_GEMMLOWP     "Build tiny-dnn with gemmlowp support"               OFF)
+option(BUILD_TESTS      "Set to ON to build tests"                           OFF)
+option(BUILD_EXAMPLES   "Set to ON to build examples"                        OFF)
+option(BUILD_DOCS       "Set to ON to build documentation"                   OFF)
+option(BUILD_BENCHMARKS "Set to ON to build benchmarks"                      OFF)
+option(COVERALLS        "Set to ON to build with code coverage"              OFF)
+option(PROFILE          "Set to ON to build with profiling"                  OFF)
+option(USE_ASAN         "Set to ON to build with ASan"                       OFF)
+
+
 if(NOT CMAKE_BUILD_TYPE)
     message(STATUS "No build type specified; defaulting to CMAKE_BUILD_TYPE=Release.")
     set(CMAKE_BUILD_TYPE Release CACHE STRING
@@ -40,42 +48,20 @@ else(NOT CMAKE_BUILD_TYPE)
 endif(NOT CMAKE_BUILD_TYPE)
 
 ####
-# Define user options
-option(USE_SSE        "Build tiny-dnn with SSE library support"            ON)
-option(USE_AVX        "Build tiny-dnn with AVX library support"            ON)
-option(USE_AVX2       "Build tiny-dnn with AVX2 library support"           OFF)
-option(USE_TBB        "Build tiny-dnn with TBB library support"            OFF)
-option(USE_OMP        "Build tiny-dnn with OMP library support"            OFF)
-option(USE_NNPACK     "Build tiny-dnn with NNPACK library support"         OFF)
-option(USE_CBLAS      "Build tiny-dnn with CBLAS library support"          OFF)
-option(USE_INTEL_MKL  "Build tiny-dnn with Intel MKL library support"      OFF)
-option(USE_OPENCL     "Build tiny-dnn with OpenCL library support"         OFF)
-option(USE_LIBDNN     "Build tiny-dnn with GreenteaLibDNN library support" OFF)
-option(USE_SERIALIZER "Build tiny-dnn with Serialization support"          ON)
-option(USE_DOUBLE     "Build tiny-dnn with double precision computations"  OFF)
-option(USE_IMAGE_API  "Build tiny-dnn with Image API support"              ON)
-option(USE_GEMMLOWP   "Build tiny-dnn with gemmlowp support"               OFF)
-
-option(BUILD_TESTS      "Set to ON to build tests"              OFF)
-option(BUILD_EXAMPLES   "Set to ON to build examples"           OFF)
-option(BUILD_DOCS       "Set to ON to build documentation"      OFF)
-option(BUILD_BENCHMARKS "Set to ON to build benchmarks"         OFF)
-option(COVERALLS        "Set to ON to build with code coverage" OFF)
-option(PROFILE          "Set to ON to build with profiling"     OFF)
-option(USE_ASAN         "Set to ON to build with ASan"          OFF)
-
-####
-# Create the library target
+# Setup the compiler options
+# set c++ standard to c++14.
+# Note: not working on CMake 2.8. We assume that user has
+#       a compiler with C++14 support.
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+message(STATUS "C++14 support has been enabled by default.")
 
 set(project_library_target_name ${PROJECT_NAME})
 set(PACKAGE_NAME TinyDNN)
 
 add_library(${project_library_target_name} INTERFACE)
 
-####
-# Setup the optional dependencies
 
-# Using cmake scripts and modules
 list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules)
 
 # Tiny-dnn provides a couple of multithreading solutions.
@@ -84,7 +70,6 @@ list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules)
 # processing. In case that none of this libraries are required, tiny-dnn
 # will use the standard C++11 Thread support library.
 
-# Find Intel Threading Building Blocks (TBB)
 find_package(TBB QUIET)
 if(USE_TBB AND TBB_FOUND)
     message(STATUS "Found Intel TBB: ${TBB_INCLUDE_DIR}")
@@ -120,7 +105,6 @@ if(USE_GEMMLOWP)
     add_definitions(-DUSE_GEMMLOWP)
 endif()
 
-# Find Open Multi-Processing (OpenMP)
 find_package(OpenMP QUIET)
 if(USE_OMP AND OPENMP_FOUND)
     message(STATUS "Found OpenMP")
@@ -228,16 +212,7 @@ elseif(USE_LIBDNN AND NOT LIBDNN_FOUND)
     message(FATAL_ERROR "Can't find LibDNN.")
 endif()
 
-####
-# Setup the compiler options
 
-# set c++ standard to c++14.
-# Note: not working on CMake 2.8. We assume that user has
-#       a compiler with C++14 support.
-
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-message(STATUS "C++14 support has been enabled by default.")
 
 include(cotire)
 
@@ -318,9 +293,10 @@ if (USE_ASAN)
     endif()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${ASAN_FLAGS}")
 endif()
+
 ####
 # Write the config.h
-# TODO: replace for tiny_dnn/config.h
+# TODO: replace for tinydnn/config.h
 # configure_file(cmake/Templates/tinydnn_config.h.in
 #               "${PROJECT_BINARY_DIR}/tinydnn_config.h")
 
@@ -345,7 +321,6 @@ elseif(UNIX)
     set(include_install_dir include)
     set(include_install_dir_postfix "${project_library_target_name}")
     set(include_install_dir_full    "${include_install_dir}/${include_install_dir_postfix}")
-
     set(config_install_dir share/${PACKAGE_NAME})
 else()
     message(FATAL_ERROR "Not supported system type. Options: UNIX or WIN32.")
@@ -426,8 +401,6 @@ if(BUILD_BENCHMARKS)
     add_subdirectory(benchmarks)
 endif(BUILD_BENCHMARKS)
 
-####
-# Configuration summary
 include(cmake/summary.cmake)
 tinydnn_print_configuration_summary()
 

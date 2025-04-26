@@ -8,3 +8,7 @@
 
 #pragma once
 
+#include "tinydnn/serialization/deserialization_helper.h"
+#include "tinydnn/serialization/serialization_functions.h"
+#include "tinydnn/serialization/serialization_helper.h"
+#include "tinydnn/serialization/serialization_layer_list.h"

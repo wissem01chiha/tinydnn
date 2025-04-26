@@ -15,7 +15,7 @@
 #include "tinydnn/backend/kernels/conv2d_grad_op.h"
 #include "tinydnn/backend/kernels/conv2d_op.h"
 #include "tinydnn/backend/kernels/conv2d_op_libdnn.h"
-#include "tinydnn/backend/kernels/conv2d_op_opencl.h"
+#include "tinydnn/backend/kernels/cl_conv2d_op.h"
 #include "tinydnn/layers/layer.h"
 #include "tinydnn/utils/utils.h"
 #include "tinydnn/image/image.h"

@@ -11,8 +11,8 @@
 #include <vector>
 #include <unordered_map>
 #include "tinydnn/layers/layer.h"
-#include "tinydnn/network.h"
-#include "tinydnn/node.h"
+#include "tinydnn/core/network.h"
+#include "tinydnn/core/node.h"
 
 namespace tinydnn {
 

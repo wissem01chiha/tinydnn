@@ -98,7 +98,7 @@ class nn_error : public std::exception {
 };
 
 /**
- * warning class for tiny-dnn (for debug)
+ * warning class for tinydnn (for debug)
  **/
 class nn_warn {
  public:

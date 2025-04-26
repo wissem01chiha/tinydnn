@@ -16,11 +16,17 @@
 #include <cereal/types/memory.hpp>
 #include "tinydnn/layers/layers.h"
 #include "tinydnn/utils/macro.h"
-#include "tinydnn/utils/nn_error.h"
-#include "tinydnn/utils/serialization_functions.h"
-#include "tinydnn/utils/serialization_layer_list.h"
+#include "tinydnn/utils/utils.h"
+#include "tinydnn/serialization/serialization_functions.h"
+#include "tinydnn/serialization/serialization_layer_list.h"
 
 namespace tinydnn {
+
+
+template <typename OutputArchive>
+class serialization_helper;
+
+
 
 template <typename OutputArchive>
 class serialization_helper {

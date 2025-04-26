@@ -8,7 +8,7 @@
 #pragma once
 
 #include "tinydnn/core/op_kernel.h"
-#include "tinydnn/backend/kernels/conv2d_op_avx.h"
+#include "tinydnn/backend/kernels/avx_conv2d_op.h"
 #include "tinydnn/backend/kernels/conv2d_op_internal.h"
 #include "tinydnn/backend/kernels/conv2d_op_nnpack.h"
 

@@ -14,6 +14,20 @@
 namespace tinydnn {
 namespace weight_init {
 
+// -------------------------------- Declarations ----------------------------------
+
+class function;
+class scalable;
+class xavier;
+class lecun;
+class gaussian;
+class constant;
+class he;
+
+
+// -------------------------------- Implementations --------------------------------
+
+
 class function {
  public:
   virtual void fill(vec_t *weight, size_t fan_in, size_t fan_out) = 0;
@@ -29,13 +43,7 @@ class scalable : public function {
   float_t scale_;
 };
 
-/**
- * Use fan-in and fan-out for scaling
- *
- * X Glorot, Y Bengio,
- * Understanding the difficulty of training deep feedforward neural networks
- * Proc. AISTATS 10, May 2010, vol.9, pp249-256
- **/
+
 class xavier : public scalable {
  public:
   xavier() : scalable(float_t(6)) {}

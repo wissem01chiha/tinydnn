@@ -9,6 +9,8 @@
 
 #include <memory>
 #include <ostream>
+#include "tinydnn/utils/utils.h"
+#include "tinydnn/activation/activation_layer.h"
 
 #if defined(USE_OPENCL) || defined(USE_CUDA)
   #ifdef USE_OPENCL

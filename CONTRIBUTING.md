@@ -1,7 +1,7 @@
 How to contribute
 ========
 
-Thanks for taking the time to contribute to tiny-dnn! The following are a few guidelines for contributors.
+Thanks for taking the time to contribute to tinydnn! The following are a few guidelines for contributors.
 These are just guidelines, not rules, and feel free to propose changes to this document in a pull request.
 
 ## Getting Started

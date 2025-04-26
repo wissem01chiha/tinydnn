@@ -7,10 +7,10 @@
 */
 #pragma once
 
-#include "tiny_dnn/core/framework/op_kernel.h"
-#include "tiny_dnn/core/kernels/lstm_cell_op_internal.h"
+#include "tinydnn/core/op_kernel.h"
+#include "tinydnn/backend/kernels/lstm_cell_op_internal.h"
 
-namespace tiny_dnn {
+namespace tinydnn {
 
 class LSTMCellOp : public core::OpKernel {
  public:
@@ -57,9 +57,9 @@ class LSTMCellOp : public core::OpKernel {
 
     // call the algorithm depending  on the selected engine type
 
-    const core::backend_t engine = context.engine();
+    const backend_t engine = context.engine();
 
-    if (engine == core::backend_t::internal || engine == core::backend_t::avx) {
+    if (engine == backend_t::internal || engine == backend_t::avx) {
       kernels::lstm_cell_op_internal(
         x, h_prev, c_prev, W_x2i[0], W_x2f[0], W_x2c[0], W_x2o[0], W_h2i[0],
         W_h2f[0], W_h2c[0], W_h2o[0], params.has_bias_ ? (*b_2i)[0] : vec_t(),

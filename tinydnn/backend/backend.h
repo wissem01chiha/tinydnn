@@ -13,7 +13,7 @@
 #include "tinydnn/core/fully_params.h"
 #include "tinydnn/core/global_avepool_params.h"
 #include "tinydnn/core/maxpool_params.h"
-#include "tinydnn/node.h"
+#include "tinydnn/core/node.h"
 
 #ifdef USE_NNPACK
 #include <nnpack.h>

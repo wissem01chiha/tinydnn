@@ -1,5 +1,3 @@
-# ========= Doxygen docs =========
-
 find_package(Doxygen QUIET)
 if(NOT DOXYGEN_FOUND)
     message(FATAL_ERROR "Doxygen is needed to build the documentation.")

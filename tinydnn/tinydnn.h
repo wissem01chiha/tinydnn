@@ -8,9 +8,8 @@
 #pragma once
 
 #include "tinydnn/config.h"
-#include "tinydnn/network.h"
-#include "tinydnn/nodes.h"
 #include "tinydnn/core/core.h"
+#include "tinydnn/backend/backend.h"
 #include "tinydnn/activation/activation.h"
 #include "tinydnn/layers/layers.h"
 #include "tinydnn/loss/loss.h"

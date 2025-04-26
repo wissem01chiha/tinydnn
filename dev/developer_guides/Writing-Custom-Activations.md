@@ -37,6 +37,7 @@ public:
 
 private:
     float_t alpha;
+}
 ```
 
 
@@ -190,4 +191,4 @@ void serialize(Archive &ar, tiny_dnn::my_activation_layer &layer) {
 ```
 
 Now you can get your layer represented in JSON structure of the network, if serialized
-by serialization helpers of tiny-dnn.
+by serialization helpers of tinydnn.

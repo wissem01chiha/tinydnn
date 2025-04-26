@@ -20,7 +20,7 @@
 #include <vector>
 #include "tinydnn/backend/backend.h"
 #include "tinydnn/core/device.fwd.h"
-#include "tinydnn/node.h"
+#include "tinydnn/core/node.h"
 #include "tinydnn/utils/parallel_for.h"
 #include "tinydnn/utils/product.h"
 #include "tinydnn/utils/utils.h"
@@ -992,4 +992,4 @@ void graph_traverse(layer *root_node, T &&node_callback, U &&edge_callback) {
   }
 }
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

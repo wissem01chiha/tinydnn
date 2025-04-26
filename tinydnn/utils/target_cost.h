@@ -14,6 +14,10 @@
 
 namespace tinydnn {
 
+// -------------------------------- Declarations -----------------------------------
+// -------------------------------- Implementations --------------------------------
+
+
 // calculate the number of samples for each class label
 //  - for example, if there are 10 samples having label 0, and
 //    20 samples having label 1, returns a vector [10, 20]

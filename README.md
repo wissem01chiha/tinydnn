@@ -1,11 +1,14 @@
+<!-- omit in toc -->
+TinyDNN
+========
 
-[![ubuntu](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/ubuntu.yml/badge.svg)](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/ubuntu.yml)
-[![Windows](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/windows.yml/badge.svg)](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/windows.yml)
-[![MacOS](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/macos.yml/badge.svg)](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/macos.yml)
-[![documentation](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/documentation.yml/badge.svg)](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/documentation.yml)
-[![Style](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/style.yml/badge.svg)](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/style.yml)
+[![ubuntu](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/ubuntu.yml/badge.svg)](https://github.com/wissem01chiha/tinydnn/actions/workflows/ubuntu.yml)
+[![Windows](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/windows.yml/badge.svg)](https://github.com/wissem01chiha/tinydnn/actions/workflows/windows.yml)
+[![MacOS](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/macos.yml/badge.svg)](https://github.com/wissem01chiha/tinydnn/actions/workflows/macos.yml)
+[![documentation](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/documentation.yml/badge.svg)](https://github.com/wissem01chiha/tinydnn/actions/workflows/documentation.yml)
+[![Style](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/style.yml/badge.svg)](https://github.com/wissem01chiha/tinydnn/actions/workflows/style.yml)
 
-**tiny-dnn** is a C++14 implementation of deep learning. It is suitable for deep learning on limited computational resource, embedded systems and IoT devices.
+tinydnn is a C++14 implementation of deep learning. It is suitable for deep learning on limited computational resource, embedded systems and IoT devices.
 
 ## Table of contents
 
@@ -37,7 +40,7 @@
 Nothing. All you need is a C++14 compiler (gcc 4.9+, clang 3.6+ or VS 2015+).
 
 ## Build
-tiny-dnn is header-only, so *there's nothing to build*. If you want to execute sample program or unit tests, you need to install [cmake](https://cmake.org/) and type the following commands:
+tinydnn is header-only, so *there's nothing to build*. If you want to execute sample program or unit tests, you need to install [cmake](https://cmake.org/) and type the following commands:
 
 ```
 cmake . -DBUILD_EXAMPLES=ON
@@ -90,13 +93,13 @@ cmake -DUSE_TBB=ON -DBUILD_TESTS=ON .
 Construct convolutional neural networks
 
 ```cpp
-#include "tiny_dnn/tiny_dnn.h"
-using namespace tiny_dnn;
-using namespace tiny_dnn::activation;
-using namespace tiny_dnn::layers;
+#include "tinydnn/tinydnn.h"
+using namespace tinydnn;
+using namespace tinydnn::activation;
+using namespace tinydnn::layers;
 
 void construct_cnn() {
-    using namespace tiny_dnn;
+    using namespace tinydnn;
 
     network<sequential> net;
 
@@ -133,10 +136,10 @@ void construct_cnn() {
 Construct multi-layer perceptron (mlp)
 
 ```cpp
-#include "tiny_dnn/tiny_dnn.h"
-using namespace tiny_dnn;
-using namespace tiny_dnn::activation;
-using namespace tiny_dnn::layers;
+#include "tinydnn/tinydnn.h"
+using namespace tinydnn;
+using namespace tinydnn::activation;
+using namespace tinydnn::layers;
 
 void construct_mlp() {
     network<sequential> net;
@@ -151,9 +154,9 @@ void construct_mlp() {
 Another way to construct mlp
 
 ```cpp
-#include "tiny_dnn/tiny_dnn.h"
-using namespace tiny_dnn;
-using namespace tiny_dnn::activation;
+#include "tinydnn/tinydnn.h"
+using namespace tinydnn;
+using namespace tinydnn::activation;
 
 void construct_mlp() {
     auto mynet = make_mlp<tanh>({ 32 * 32, 300, 10 });
@@ -163,10 +166,7 @@ void construct_mlp() {
 }
 ```
 
-For more samples, read examples/main.cpp or [MNIST example](https://github.com/tiny-dnn/tiny-dnn/tree/master/examples/mnist) page.
-
 ## Contributing
-Since deep learning community is rapidly growing, we'd love to get contributions from you to accelerate tiny-dnn development!
 For a quick guide to contributing, take a look at the [Contribution Documents](CONTRIBUTING.md).
 
 ## References

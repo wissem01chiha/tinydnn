@@ -12,6 +12,10 @@
 
 namespace tinydnn {
 
+// -------------------------------- Declarations -----------------------------------
+// -------------------------------- Implementations --------------------------------
+
+
 inline vec_t corrupt(vec_t &&in, float_t corruption_level, float_t min_value) {
   for (size_t i                            = 0; i < in.size(); i++)
     if (bernoulli(corruption_level)) in[i] = min_value;

@@ -1,4 +1,4 @@
-# tiny-dnn documentation
+# tinydnn documentation
 
 A built version of documentation is available [here](http://tiny-dnn.readthedocs.io/en/latest/index.html).
 

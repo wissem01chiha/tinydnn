@@ -19,8 +19,10 @@
 #endif
 
 namespace vectorize {
-
 namespace detail {
+
+// -------------------------------- Declarations -----------------------------------
+// -------------------------------- Implementations --------------------------------
 
 template <typename T>
 struct scalar_generic {

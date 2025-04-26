@@ -8,3 +8,4 @@
 #pragma once
 
 #include "tinydnn/visualizer/graph_visualizer.h"
+#include "tinydnn/visualizer/display.h"

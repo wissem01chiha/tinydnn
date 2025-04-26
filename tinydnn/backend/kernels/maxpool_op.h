@@ -8,7 +8,7 @@
 #pragma once
 
 #include "tinydnn/core/op_kernel.h"
-#include "tinydnn/backend/kernels/maxpool_op_avx.h"
+#include "tinydnn/backend/kernels/avx_maxpool_op.h"
 #include "tinydnn/backend/kernels/maxpool_op_internal.h"
 #include "tinydnn/backend/kernels/maxpool_op_nnpack.h"
 

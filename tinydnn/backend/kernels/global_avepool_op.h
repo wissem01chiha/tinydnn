@@ -8,7 +8,7 @@
 #pragma once
 
 #include "tinydnn/core/op_kernel.h"
-#include "tinydnn/backend/kernels/global_avepool_op_avx.h"
+#include "tinydnn/backend/kernels/avx_global_avepool_op.h"
 #include "tinydnn/backend/kernels/global_avepool_op_internal.h"
 
 namespace tinydnn {

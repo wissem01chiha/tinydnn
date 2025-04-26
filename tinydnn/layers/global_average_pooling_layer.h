@@ -26,7 +26,7 @@ class global_average_pooling_layer : public layer {
  public:
   global_average_pooling_layer(
     const shape3d &in_shape,
-    core::backend_t backend_type = core::default_engine())
+    backend_t backend_type = default_engine())
     : global_average_pooling_layer(
         in_shape.width_, in_shape.height_, in_shape.depth_, backend_type) {}
 
@@ -39,7 +39,7 @@ class global_average_pooling_layer : public layer {
     size_t in_width,
     size_t in_height,
     size_t in_channels,
-    core::backend_t backend_type = core::default_engine())
+    backend_t backend_type = default_engine())
     : layer({vector_type::data}, {vector_type::data}) {
     set_global_avepool_params(shape3d(in_width, in_height, in_channels),
                               shape3d(in_channels, 1, 1));
@@ -110,17 +110,17 @@ class global_average_pooling_layer : public layer {
   std::shared_ptr<core::OpKernel> kernel_fwd_;
   std::shared_ptr<core::OpKernel> kernel_back_;
 
-  void init_backend(core::backend_t backend_type) {
+  void init_backend(backend_t backend_type) {
     core::OpKernelConstruction ctx =
       core::OpKernelConstruction(layer::device(), &params_);
 
     layer::set_backend_type(backend_type);
-    if (backend_type == core::backend_t::avx) {
+    if (backend_type == backend_t::avx) {
 #ifndef USE_AVX
       nn_warn(
         "tiny-dnn has not been compiled with AVX support, "
         "fallback to internal backend for global avepool layer.\n");
-      layer::set_backend_type(core::backend_t::internal);
+      layer::set_backend_type(backend_t::internal);
 #endif
     }
     kernel_fwd_.reset(new GlobalAvePoolOp(ctx));
@@ -134,4 +134,4 @@ class global_average_pooling_layer : public layer {
   }
 };
 
-}  // namespace tiny_dnn
+}  // namespace tinydnn

@@ -11,3 +11,5 @@
 #include "tinydnn/activation/activation_layer.h"
 #include "tinydnn/activation/elu_layer.h"
 #include "tinydnn/activation/relu_layer.h"
+#include "tinydnn/activation/softmax_layer.h"
+#include "tinydnn/activation/tanh_layer.h"

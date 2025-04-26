@@ -1,5 +1,5 @@
 # How-Tos
-Details about tiny-dnn's API and short examples.
+Details about tinydnn's API and short examples.
  
 ## construct the network model
 There are two types of network model available: sequential and graph. A graph representation describe network as computational graph - each node of graph is layer, and each directed edge holds tensor and its gradients. Sequential representation describe network as linked list - each layer has at most one predecessor and one successor layer.
@@ -25,9 +25,9 @@ net << convolutional_layer(32, 32, 5, 3, 9) << relu()
     << fully_connected_layer(120, 40) << softmax();
 ```
 
-If you feel these syntax a bit redundant, you can also use "shortcut" names defined in tiny_dnn.h.
+If you feel these syntax a bit redundant, you can also use "shortcut" names defined in tinydnn.h.
 ```cpp
-using namespace tiny_dnn::layers;
+using namespace tinydnn::layers;
 net << conv(32, 32, 5, 3, 9) << relu()
     << ave_pool(28, 28, 9, 2) << relu()
     << fc(14 * 14 * 9, 120) << tanh()
@@ -366,7 +366,7 @@ parse_cifar10("data_batch1.bin", &images, &labels, -1.0, 1.0, 0, 0);
 ```
 
 ### reading images
-You can use a simple ```tiny_dnn::image``` class to handle your images. JPEG (baseline & progressive), PNG (1/2/4/8 bit per channel), BMP (non-1bp, non-RLE), GIF are supported reading formats. Note that it's memory layout differs from OpenCV - it's layout is KHW (K:channels, H:height, W:width).
+You can use a simple ```tinydnn::image``` class to handle your images. JPEG (baseline & progressive), PNG (1/2/4/8 bit per channel), BMP (non-1bp, non-RLE), GIF are supported reading formats. Note that it's memory layout differs from OpenCV - it's layout is KHW (K:channels, H:height, W:width).
 
 ```cpp
 // default underlying type is uint8_t, and memory layout is KHW
@@ -375,7 +375,7 @@ You can use a simple ```tiny_dnn::image``` class to handle your images. JPEG (ba
 // R = [R0, R1,  G = [G0, G1,  B = [B0, B1,
 //      R2, R3]       G2, G3]       B2, B3]
 //
-// memory layout of tiny_dnn::image is KHW, and order of channels K depends on its image_type:
+// memory layout of tinydnn::image is KHW, and order of channels K depends on its image_type:
 //
 // gray_img = { gray(R0,G0,B0), gray(R1,G1,B1), gray(R2,G2,B2), gray(R3,G3,B3) }
 // rgb_img = { R0, R1, R2, R3, G0, G1, G2, G3, B0, B1, B2, B3 }
@@ -554,8 +554,8 @@ This behaviour is suitable when you integrate tiny-dnn into your application (es
 ### catch application exceptions
 tiny-dnn may throw one of the following types:
 
-- ```tiny_dnn::nn_error```
-- ```tiny_dnn::not_implemented_error```
+- ```tinydnn::nn_error```
+- ```tinydnn::not_implemented_error```
 - ```std::bad_alloc```
 
 ```not_implemented_error``` is derived from ```nn_error```, and they have ```what()``` method to provide detail message about the error.

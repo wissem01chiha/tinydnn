@@ -8,8 +8,8 @@
 #pragma once
 
 #include <memory>
-#include "tinydnn/activations/activation_layer.h"
-#include "tinydnn/core/params/params.h"
+#include "tinydnn/activation/activation_layer.h"
+#include "tinydnn/core/params.h"
 
 namespace tinydnn {
 namespace core {

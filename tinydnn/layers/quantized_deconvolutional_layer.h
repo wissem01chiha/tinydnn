@@ -13,9 +13,9 @@
 #include <string>
 #include <utility>
 #include <vector>
-#include "tinydnn/backend/backend_tiny.h"
+#include "tinydnn/backend/tiny_backend.h"
 #ifdef USE_AVX
-#include "tinydnn/core/backend_avx.h"
+#include "tinydnn/core/avx_backend.h"
 #endif
 #include "tinydnn/utils/utils.h"
 #include "tinydnn/image/image.h"
@@ -63,7 +63,7 @@ class quantized_deconvolutional_layer : public layer {
     bool has_bias                = true,
     size_t w_stride              = 1,
     size_t h_stride              = 1,
-    core::backend_t backend_type = core::backend_t::internal)
+    backend_t backend_type = backend_t::internal)
     : layer(std_input_order(has_bias), {vector_type::data}) {
     deconv_set_params(shape3d(in_width, in_height, in_channels), window_size,
                       window_size, out_channels, pad_type, has_bias, w_stride,
@@ -107,7 +107,7 @@ class quantized_deconvolutional_layer : public layer {
     bool has_bias                = true,
     size_t w_stride              = 1,
     size_t h_stride              = 1,
-    core::backend_t backend_type = core::backend_t::internal)
+    backend_t backend_type = backend_t::internal)
     : layer(std_input_order(has_bias), {vector_type::data}) {
     deconv_set_params(shape3d(in_width, in_height, in_channels), window_width,
                       window_height, out_channels, pad_type, has_bias, w_stride,
@@ -151,7 +151,7 @@ class quantized_deconvolutional_layer : public layer {
     bool has_bias                = true,
     size_t w_stride              = 1,
     size_t h_stride              = 1,
-    core::backend_t backend_type = core::backend_t::internal)
+    backend_t backend_type = backend_t::internal)
     : layer(std_input_order(has_bias), {vector_type::data}) {
     deconv_set_params(shape3d(in_width, in_height, in_channels), window_size,
                       window_size, out_channels, pad_type, has_bias, w_stride,
@@ -197,7 +197,7 @@ class quantized_deconvolutional_layer : public layer {
     bool has_bias                = true,
     size_t w_stride              = 1,
     size_t h_stride              = 1,
-    core::backend_t backend_type = core::backend_t::internal)
+    backend_t backend_type = backend_t::internal)
     : layer(std_input_order(has_bias), {vector_type::data}) {
     deconv_set_params(shape3d(in_width, in_height, in_channels), window_width,
                       window_height, out_channels, pad_type, has_bias, w_stride,
@@ -313,11 +313,11 @@ class quantized_deconvolutional_layer : public layer {
   friend struct serialization_buddy;
 
  private:
-  void init_backend(const core::backend_t backend_type) {
+  void init_backend(const backend_t backend_type) {
     std::shared_ptr<core::backend> backend = nullptr;
 
     // allocate new backend
-    if (backend_type == core::backend_t::internal) {
+    if (backend_type == backend_t::internal) {
       backend = std::make_shared<core::tiny_backend>(
         &params_,
         [this](const tensor_t &in) { return copy_and_unpad_output(in); },
@@ -483,7 +483,7 @@ class quantized_deconvolutional_layer : public layer {
   core::deconv_params params_;
 
   /* The type of backend */
-  core::backend_t backend_type_;
+  backend_t backend_type_;
 
   /* Workers buffers */
   core::deconv_layer_worker_specific_storage deconv_layer_worker_storage_;

@@ -13,12 +13,13 @@
 #include <string>
 #include <utility>
 #include <vector>
-#include "tinydnn/backend/backend_tiny.h"
+#include "tinydnn/backend/tiny_backend.h"
 #ifdef USE_AVX
-#include "tinydnn/backend/backend_avx.h"
+#include "tinydnn/backend/avx_backend.h"
 #endif   
 #include "tinydnn/utils/utils.h"
 #include "tinydnn/image/image.h"
+#include "tinydnn/layers/layer.h"
 
 
 namespace tinydnn {
