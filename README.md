@@ -1,6 +1,8 @@
 <!-- omit in toc -->
-TinyDNN
-========
+<p align="center">
+<img src="./docs/logo/TinyDNN-logo-letters-alpha-version.png" />
+</p>
+
 
 [![ubuntu](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/ubuntu.yml/badge.svg)](https://github.com/wissem01chiha/tinydnn/actions/workflows/ubuntu.yml)
 [![Windows](https://github.com/wissem01chiha/tiny-dnn/actions/workflows/windows.yml/badge.svg)](https://github.com/wissem01chiha/tinydnn/actions/workflows/windows.yml)
